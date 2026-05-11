@@ -42,7 +42,7 @@
     cursor: none;
   }
 
-  @media (hover: none) {
+  @media (hover: none), (max-width: 1023px) {
     body { cursor: auto; }
   }
 
@@ -70,7 +70,7 @@
   }
   body.cursor-hover #cursor-dot { width: 12px; height: 12px; }
   body.cursor-hover #cursor-ring { width: 60px; height: 60px; border-color: var(--orange); }
-  @media (hover: none) {
+  @media (hover: none), (max-width: 1023px) {
     #cursor, #cursor-ring { display: none; }
   }
 
