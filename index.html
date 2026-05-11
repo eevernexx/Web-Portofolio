@@ -889,8 +889,8 @@
     max-width: 1100px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 320px 1fr;
-    gap: 32px;
+    grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
+    gap: clamp(20px, 3vw, 32px);
     align-items: stretch;
   }
   .pub-preview {
@@ -938,10 +938,11 @@
     background: var(--glass);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: 36px 40px;
+    padding: clamp(24px, 3.5vw, 40px) clamp(22px, 3.5vw, 40px);
     position: relative;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+    min-width: 0;
   }
   .publication-card::before {
     content: '';
@@ -984,7 +985,7 @@
   }
   .pub-title {
     font-family: var(--font-display);
-    font-size: clamp(1.3rem, 2.4vw, 1.85rem);
+    font-size: clamp(1.15rem, 2.4vw, 1.85rem);
     font-weight: 700;
     color: var(--white);
     line-height: 1.3;
@@ -993,29 +994,32 @@
   }
   .pub-authors {
     color: var(--gray-light);
-    font-size: 0.92rem;
+    font-size: clamp(0.82rem, 1.4vw, 0.92rem);
     font-weight: 500;
     margin-bottom: 6px;
+    line-height: 1.5;
   }
   .pub-authors strong { color: var(--orange); font-weight: 600; }
   .pub-venue {
     color: var(--gray);
-    font-size: 0.85rem;
-    margin-bottom: 24px;
+    font-size: clamp(0.76rem, 1.2vw, 0.85rem);
+    margin-bottom: clamp(18px, 2.5vw, 24px);
     font-style: italic;
+    line-height: 1.5;
   }
   .pub-abstract {
     color: var(--gray-light);
-    font-size: 0.94rem;
-    line-height: 1.75;
-    margin-bottom: 24px;
+    font-size: clamp(0.86rem, 1.4vw, 0.94rem);
+    line-height: 1.7;
+    margin-bottom: clamp(20px, 2.5vw, 24px);
   }
   .pub-tags {
-    display: flex; flex-wrap: wrap; gap: 8px;
-    margin-bottom: 32px;
+    display: flex; flex-wrap: wrap; gap: 6px;
+    margin-bottom: clamp(24px, 3vw, 32px);
   }
   .pub-link {
     width: max-content;
+    max-width: 100%;
   }
 
   /* ===== CERTIFICATIONS SECTION ===== */
@@ -1374,11 +1378,12 @@
     .publication-row {
       grid-template-columns: 1fr;
       gap: 20px;
+      max-width: 100%;
     }
-    .publication-card { padding: 28px 22px; }
     .pub-preview { aspect-ratio: 4 / 3; max-width: 100%; }
     .pub-meta-top { flex-wrap: wrap; gap: 10px; }
     .pub-link { width: 100%; justify-content: center; }
+    .pub-title { line-height: 1.35; }
 
     .cert-grid { grid-template-columns: 1fr; gap: 16px; }
     .cert-card { padding: 24px; gap: 16px; }
@@ -1424,6 +1429,16 @@
     .about-img-card.accent { width: 120px; height: 140px; }
     .about-exp-badge { padding: 12px 16px; }
     .about-exp-num { font-size: 1.6rem; }
+
+    /* Publication card — tighter on small phones */
+    .publication-row { gap: 16px; }
+    .pub-preview { aspect-ratio: 3 / 2; border-radius: var(--radius); }
+    .publication-card { border-radius: var(--radius); }
+    .pub-type { font-size: 0.66rem; padding: 4px 9px; letter-spacing: 0.06em; }
+    .pub-year { font-size: 0.78rem; }
+    .pub-tags .service-tag { font-size: 0.68rem; padding: 3px 8px; }
+    .pub-meta-top { margin-bottom: 14px; }
+    .pub-title { margin-bottom: 10px; }
 
     footer { font-size: 0.8rem; gap: 12px; }
   }
