@@ -501,12 +501,33 @@
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius);
-    padding: 26px 22px;
+    padding: 28px 20px 24px;
     text-align: center;
     position: relative;
     overflow: hidden;
     transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), border-color 0.3s ease;
   }
+  .ts-icon {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    position: relative;
+    z-index: 1;
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  }
+  .ts-icon img, .ts-icon svg {
+    width: 34px;
+    height: 34px;
+    display: block;
+  }
+  .ts-icon-orange {
+    background: rgba(255, 115, 0, 0.12);
+    border: 1px solid rgba(255, 115, 0, 0.35);
+  }
+  .ts-card:hover .ts-icon { transform: scale(1.08) rotate(-4deg); }
   .ts-card::before {
     content: '';
     position: absolute;
@@ -1658,18 +1679,54 @@
     <p class="section-subtitle">Technologies powering my data &amp; ML workflows.</p>
   </div>
   <div class="ts-grid">
-    <div class="ts-card reveal"><div class="ts-name">Python</div><div class="ts-category">Language</div></div>
-    <div class="ts-card reveal"><div class="ts-name">SQL</div><div class="ts-category">Database</div></div>
-    <div class="ts-card reveal"><div class="ts-name">TensorFlow / Keras</div><div class="ts-category">Deep Learning</div></div>
-    <div class="ts-card reveal"><div class="ts-name">Scikit-learn</div><div class="ts-category">ML Library</div></div>
-    <div class="ts-card reveal"><div class="ts-name">OpenCV</div><div class="ts-category">Computer Vision</div></div>
-    <div class="ts-card reveal"><div class="ts-name">NumPy</div><div class="ts-category">Computing</div></div>
-    <div class="ts-card reveal"><div class="ts-name">Pandas</div><div class="ts-category">Data Analysis</div></div>
-    <div class="ts-card reveal"><div class="ts-name">Matplotlib</div><div class="ts-category">Visualization</div></div>
-    <div class="ts-card reveal"><div class="ts-name">Seaborn</div><div class="ts-category">Visualization</div></div>
-    <div class="ts-card reveal"><div class="ts-name">Streamlit</div><div class="ts-category">Web Apps</div></div>
-    <div class="ts-card reveal"><div class="ts-name">Jupyter Notebook</div><div class="ts-category">Environment</div></div>
-    <div class="ts-card reveal"><div class="ts-name">Google Colab</div><div class="ts-category">Environment</div></div>
+    <div class="ts-card reveal">
+      <div class="ts-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="ts-name">Python</div><div class="ts-category">Language</div>
+    </div>
+    <div class="ts-card reveal">
+      <div class="ts-icon ts-icon-orange"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><ellipse cx="16" cy="7" rx="10" ry="3" stroke="#ff7300" stroke-width="1.6" fill="rgba(255,115,0,0.12)"/><path d="M6 7v18c0 1.66 4.48 3 10 3s10-1.34 10-3V7" stroke="#ff7300" stroke-width="1.6"/><path d="M6 14c0 1.66 4.48 3 10 3s10-1.34 10-3" stroke="#ff7300" stroke-width="1.6"/><path d="M6 21c0 1.66 4.48 3 10 3s10-1.34 10-3" stroke="#ff7300" stroke-width="1.6"/></svg></div>
+      <div class="ts-name">SQL</div><div class="ts-category">Database</div>
+    </div>
+    <div class="ts-card reveal">
+      <div class="ts-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="ts-name">TensorFlow / Keras</div><div class="ts-category">Deep Learning</div>
+    </div>
+    <div class="ts-card reveal">
+      <div class="ts-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="ts-name">Scikit-learn</div><div class="ts-category">ML Library</div>
+    </div>
+    <div class="ts-card reveal">
+      <div class="ts-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="ts-name">OpenCV</div><div class="ts-category">Computer Vision</div>
+    </div>
+    <div class="ts-card reveal">
+      <div class="ts-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="ts-name">NumPy</div><div class="ts-category">Computing</div>
+    </div>
+    <div class="ts-card reveal">
+      <div class="ts-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="ts-name">Pandas</div><div class="ts-category">Data Analysis</div>
+    </div>
+    <div class="ts-card reveal">
+      <div class="ts-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="ts-name">Matplotlib</div><div class="ts-category">Visualization</div>
+    </div>
+    <div class="ts-card reveal">
+      <div class="ts-icon"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="4" y="20" width="4" height="8" rx="0.6" fill="#4c72b0"/><rect x="11" y="14" width="4" height="14" rx="0.6" fill="#dd8452"/><rect x="18" y="8" width="4" height="20" rx="0.6" fill="#55a868"/><rect x="25" y="16" width="4" height="12" rx="0.6" fill="#c44e52"/></svg></div>
+      <div class="ts-name">Seaborn</div><div class="ts-category">Visualization</div>
+    </div>
+    <div class="ts-card reveal">
+      <div class="ts-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/streamlit/streamlit-original.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="ts-name">Streamlit</div><div class="ts-category">Web Apps</div>
+    </div>
+    <div class="ts-card reveal">
+      <div class="ts-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="ts-name">Jupyter Notebook</div><div class="ts-category">Environment</div>
+    </div>
+    <div class="ts-card reveal">
+      <div class="ts-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecolab/googlecolab-original.svg" alt="" loading="lazy" decoding="async"></div>
+      <div class="ts-name">Google Colab</div><div class="ts-category">Environment</div>
+    </div>
   </div>
 </section>
 
