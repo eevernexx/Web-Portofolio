@@ -484,15 +484,15 @@
   }
   @keyframes rotate-slow { to { transform: translate(-50%,-45%) rotate(360deg); } }
 
-  /* ===== TECH STACK — Glass card grid ===== */
+  /* ===== TECH STACK — Compact glass card grid ===== */
   .ts-section { background: var(--bg); }
-  .ts-header { margin-bottom: 56px; text-align: center; }
+  .ts-header { margin-bottom: 40px; text-align: center; }
   .ts-header .section-subtitle { margin: 8px auto 0; }
   .ts-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    max-width: 1100px;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 10px;
+    max-width: 920px;
     margin: 0 auto;
   }
   .ts-card {
@@ -500,34 +500,34 @@
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--glass-border);
-    border-radius: var(--radius);
-    padding: 28px 20px 24px;
+    border-radius: 14px;
+    padding: 16px 12px 14px;
     text-align: center;
     position: relative;
     overflow: hidden;
-    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), border-color 0.3s ease;
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), border-color 0.3s ease;
   }
   .ts-icon {
-    width: 56px; height: 56px;
+    width: 40px; height: 40px;
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.95);
     display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 16px;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    margin: 0 auto 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     position: relative;
     z-index: 1;
-    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
   }
   .ts-icon img, .ts-icon svg {
-    width: 34px;
-    height: 34px;
+    width: 24px;
+    height: 24px;
     display: block;
   }
   .ts-icon-orange {
     background: rgba(255, 115, 0, 0.12);
     border: 1px solid rgba(255, 115, 0, 0.35);
   }
-  .ts-card:hover .ts-icon { transform: scale(1.08) rotate(-4deg); }
+  .ts-card:hover .ts-icon { transform: scale(1.1) rotate(-4deg); }
   .ts-card::before {
     content: '';
     position: absolute;
@@ -545,33 +545,32 @@
   }
   .ts-name {
     font-family: var(--font-display);
-    font-size: clamp(1rem, 1.4vw, 1.25rem);
-    font-weight: 800;
+    font-size: 0.9rem;
+    font-weight: 700;
     color: var(--orange);
-    line-height: 1.15;
-    letter-spacing: -0.01em;
+    line-height: 1.2;
+    letter-spacing: -0.005em;
     position: relative;
     z-index: 1;
   }
   .ts-category {
-    font-size: 0.74rem;
+    font-size: 0.62rem;
     color: var(--gray);
-    margin-top: 8px;
+    margin-top: 5px;
     font-weight: 500;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     position: relative;
     z-index: 1;
   }
-  @media (max-width: 1023px) {
-    .ts-grid { grid-template-columns: repeat(3, 1fr); }
-  }
   @media (max-width: 767px) {
-    .ts-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .ts-card { padding: 22px 16px; }
-    .ts-name { font-size: 1.05rem; }
-    .ts-category { font-size: 0.7rem; }
-    .ts-header { margin-bottom: 36px; }
+    .ts-grid { grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 8px; }
+    .ts-card { padding: 14px 10px 12px; }
+    .ts-icon { width: 36px; height: 36px; margin-bottom: 8px; }
+    .ts-icon img, .ts-icon svg { width: 22px; height: 22px; }
+    .ts-name { font-size: 0.82rem; }
+    .ts-category { font-size: 0.58rem; }
+    .ts-header { margin-bottom: 28px; }
   }
 
   /* (Legacy) Stats — kept hidden in case re-enabled */
@@ -1714,10 +1713,6 @@
     <div class="ts-card reveal">
       <div class="ts-icon"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect x="4" y="20" width="4" height="8" rx="0.6" fill="#4c72b0"/><rect x="11" y="14" width="4" height="14" rx="0.6" fill="#dd8452"/><rect x="18" y="8" width="4" height="20" rx="0.6" fill="#55a868"/><rect x="25" y="16" width="4" height="12" rx="0.6" fill="#c44e52"/></svg></div>
       <div class="ts-name">Seaborn</div><div class="ts-category">Visualization</div>
-    </div>
-    <div class="ts-card reveal">
-      <div class="ts-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/streamlit/streamlit-original.svg" alt="" loading="lazy" decoding="async"></div>
-      <div class="ts-name">Streamlit</div><div class="ts-category">Web Apps</div>
     </div>
     <div class="ts-card reveal">
       <div class="ts-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" alt="" loading="lazy" decoding="async"></div>
