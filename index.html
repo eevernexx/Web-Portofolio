@@ -484,155 +484,73 @@
   }
   @keyframes rotate-slow { to { transform: translate(-50%,-45%) rotate(360deg); } }
 
-  /* ===== TECH STACK — Scroll-driven card stack ===== */
-  .ts-section {
-    position: relative;
-    background: var(--bg);
-    overflow: hidden;
-  }
-  .ts-container {
-    position: relative;
-    height: 1200vh; /* ~100vh per card × 12 cards */
-  }
-  .ts-header {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    padding: 100px 48px 0;
-    text-align: center;
-    z-index: 5;
-    pointer-events: none;
-  }
-  .ts-header .section-tag { pointer-events: auto; }
-  .ts-header .section-subtitle {
-    max-width: 480px;
-    margin: 8px auto 0;
-  }
-  /* Animated background rays */
-  .ts-rays {
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    width: 100%;
-    overflow: hidden;
-    z-index: 1;
-    pointer-events: none;
-    margin-bottom: -100vh; /* so cards layer can occupy same space */
-  }
-  .ts-rays span {
-    position: absolute;
-    top: -20%;
-    width: 1px;
-    height: 120%;
-    background: linear-gradient(to bottom, transparent 0%, var(--orange) 50%, transparent 100%);
-    opacity: 0.35;
-    animation: ts-ray-fall linear infinite;
-    will-change: transform;
-  }
-  .ts-rays span:nth-child(1) { left: 12%; animation-duration: 8s;  animation-delay: -1s; }
-  .ts-rays span:nth-child(2) { left: 25%; animation-duration: 12s; animation-delay: -4s; opacity: 0.2; }
-  .ts-rays span:nth-child(3) { left: 38%; animation-duration: 9s;  animation-delay: -2s; }
-  .ts-rays span:nth-child(4) { left: 52%; animation-duration: 14s; animation-delay: -6s; opacity: 0.25; }
-  .ts-rays span:nth-child(5) { left: 64%; animation-duration: 7s;  animation-delay: -3s; }
-  .ts-rays span:nth-child(6) { left: 75%; animation-duration: 11s; animation-delay: -5s; opacity: 0.2; }
-  .ts-rays span:nth-child(7) { left: 84%; animation-duration: 10s; animation-delay: -2s; }
-  .ts-rays span:nth-child(8) { left: 93%; animation-duration: 13s; animation-delay: -7s; opacity: 0.3; }
-  @keyframes ts-ray-fall {
-    0%   { transform: translate3d(0, -120%, 0); }
-    100% { transform: translate3d(0, 100%, 0); }
-  }
-  /* Sticky cards */
-  .ts-cards {
-    position: sticky;
-    top: 50%;
-    transform: translateY(-50%);
-    height: 0;
-    width: 100%;
-    z-index: 3;
+  /* ===== TECH STACK — Glass card grid ===== */
+  .ts-section { background: var(--bg); }
+  .ts-header { margin-bottom: 56px; text-align: center; }
+  .ts-header .section-subtitle { margin: 8px auto 0; }
+  .ts-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    max-width: 1100px;
+    margin: 0 auto;
   }
   .ts-card {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 360px;
-    max-width: calc(100vw - 40px);
-    transform: translate(-50%, -50%);
-    transition: transform 1.3s cubic-bezier(0.9, -0.2, 0.1, 1.2),
-                opacity 1.3s cubic-bezier(1, 0, 0, 1);
-    will-change: transform, opacity;
-  }
-  .ts-card-inner {
-    position: relative;
-    z-index: 2;
-    padding: 36px 32px 56px;
-    background: linear-gradient(135deg, var(--bg2) 0%, #161616 100%);
-    border: 1px solid var(--border);
-    border-radius: 24px;
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: 26px 22px;
     text-align: center;
-    color: var(--white);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), border-color 0.3s ease;
   }
-  .ts-card-icon {
-    width: 84px; height: 84px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.96);
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 24px;
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
-  }
-  .ts-card-icon img { width: 48px; height: 48px; display: block; }
-  .ts-card-icon-ml {
-    background: rgba(255, 115, 0, 0.12);
-    border: 1px solid rgba(255, 115, 0, 0.35);
-  }
-  .ts-card-icon-ml svg { width: 36px; height: 36px; }
-  .ts-card h3 {
-    font-family: var(--font-display);
-    font-size: 1.6rem;
-    font-weight: 700;
-    margin: 0 0 12px;
-    color: var(--white);
-    letter-spacing: -0.01em;
-  }
-  .ts-card p {
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    color: var(--gray-light);
-    line-height: 1.65;
-    margin: 0;
-  }
-  .ts-counter {
+  .ts-card::before {
+    content: '';
     position: absolute;
-    right: 18px; bottom: 16px;
+    bottom: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--orange);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .ts-card:hover::before { transform: scaleX(1); }
+  .ts-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--orange-mid);
+  }
+  .ts-name {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 1.4vw, 1.25rem);
+    font-weight: 800;
     color: var(--orange);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    font-family: var(--font-display);
-  }
-  /* Deck shadow behind */
-  .ts-shadow {
-    position: absolute;
-    top: 0.5rem; left: 0.5rem;
-    width: 100%; height: 100%;
-    background: rgba(255, 115, 0, 0.08);
-    border: 1px solid rgba(255, 115, 0, 0.2);
-    border-radius: 24px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    position: relative;
     z-index: 1;
   }
-  /* Slide-up state (cards move out of view) */
-  .ts-card.slide-up {
-    transform: translate(-50%, -260%);
+  .ts-category {
+    font-size: 0.74rem;
+    color: var(--gray);
+    margin-top: 8px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 1023px) {
+    .ts-grid { grid-template-columns: repeat(3, 1fr); }
   }
   @media (max-width: 767px) {
-    .ts-container { height: 950vh; }
-    .ts-header { padding: 80px 20px 0; }
-    .ts-card { width: 320px; }
-    .ts-card-inner { padding: 30px 24px 50px; }
-    .ts-card h3 { font-size: 1.35rem; }
-    .ts-card p { font-size: 0.86rem; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .ts-rays span { animation: none; opacity: 0.15; }
-    .ts-card { transition: opacity 0.3s linear; }
+    .ts-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .ts-card { padding: 22px 16px; }
+    .ts-name { font-size: 1.05rem; }
+    .ts-category { font-size: 0.7rem; }
+    .ts-header { margin-bottom: 36px; }
   }
 
   /* (Legacy) Stats — kept hidden in case re-enabled */
@@ -1732,29 +1650,26 @@
   </div>
 </section>
 
-<!-- ===== TECH STACK (scroll-driven card stack) ===== -->
-<section id="techstack-section" class="ts-section">
-  <div class="ts-container">
-    <div class="ts-rays" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-    <div class="ts-header">
-      <div class="section-tag">Tech Stack</div>
-      <h2 class="section-title">Tools I <span>Wield</span></h2>
-      <p class="section-subtitle">The technologies powering my data &amp; engineering workflows. Scroll to flip through.</p>
-    </div>
-    <div class="ts-cards" id="ts-cards">
-      <div class="ts-card"><div class="ts-card-inner"><div class="ts-card-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="" loading="lazy" decoding="async"></div><h3>Python</h3><p>The backbone of my data science and ML workflows — from quick scripts to production pipelines.</p><div class="ts-counter">12/12</div></div><div class="ts-shadow"></div></div>
-      <div class="ts-card"><div class="ts-card-inner"><div class="ts-card-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="" loading="lazy" decoding="async"></div><h3>TensorFlow</h3><p>Deep learning framework I use for building &amp; training production-ready neural networks.</p><div class="ts-counter">11/12</div></div><div class="ts-shadow"></div></div>
-      <div class="ts-card"><div class="ts-card-inner"><div class="ts-card-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecolab/googlecolab-original.svg" alt="" loading="lazy" decoding="async"></div><h3>Google Colab</h3><p>Cloud notebook environment for rapid ML experimentation with free GPU access.</p><div class="ts-counter">10/12</div></div><div class="ts-shadow"></div></div>
-      <div class="ts-card"><div class="ts-card-inner"><div class="ts-card-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="" loading="lazy" decoding="async"></div><h3>MySQL</h3><p>Relational database I rely on for structured, query-driven data storage at scale.</p><div class="ts-counter">9/12</div></div><div class="ts-shadow"></div></div>
-      <div class="ts-card"><div class="ts-card-inner"><div class="ts-card-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="" loading="lazy" decoding="async"></div><h3>Pandas</h3><p>Data wrangling powerhouse — every analysis I do starts with a DataFrame.</p><div class="ts-counter">8/12</div></div><div class="ts-shadow"></div></div>
-      <div class="ts-card"><div class="ts-card-inner"><div class="ts-card-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg" alt="" loading="lazy" decoding="async"></div><h3>Scikit-learn</h3><p>My go-to for classical ML — pipelines, baselines, and well-engineered features.</p><div class="ts-counter">7/12</div></div><div class="ts-shadow"></div></div>
-      <div class="ts-card"><div class="ts-card-inner"><div class="ts-card-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" alt="" loading="lazy" decoding="async"></div><h3>Laravel</h3><p>PHP framework I use for building robust, maintainable backend systems.</p><div class="ts-counter">6/12</div></div><div class="ts-shadow"></div></div>
-      <div class="ts-card"><div class="ts-card-inner"><div class="ts-card-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="" loading="lazy" decoding="async"></div><h3>React</h3><p>Component-based UI library — my choice for interactive, modern frontends.</p><div class="ts-counter">5/12</div></div><div class="ts-shadow"></div></div>
-      <div class="ts-card"><div class="ts-card-inner"><div class="ts-card-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="" loading="lazy" decoding="async"></div><h3>NumPy</h3><p>The numerical computing foundation that powers everything in scientific Python.</p><div class="ts-counter">4/12</div></div><div class="ts-shadow"></div></div>
-      <div class="ts-card"><div class="ts-card-inner"><div class="ts-card-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="" loading="lazy" decoding="async"></div><h3>HTML</h3><p>Semantic markup for accessible, well-structured web pages.</p><div class="ts-counter">3/12</div></div><div class="ts-shadow"></div></div>
-      <div class="ts-card"><div class="ts-card-inner"><div class="ts-card-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="" loading="lazy" decoding="async"></div><h3>CSS</h3><p>Styling language I use to craft responsive, animated, modern interfaces.</p><div class="ts-counter">2/12</div></div><div class="ts-shadow"></div></div>
-      <div class="ts-card"><div class="ts-card-inner"><div class="ts-card-icon ts-card-icon-ml"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" aria-hidden="true"><circle cx="5" cy="8" r="2" fill="#ff7300"/><circle cx="5" cy="16" r="2" fill="#ff7300"/><circle cx="12" cy="12" r="2" fill="#ff7300"/><circle cx="19" cy="8" r="2" fill="#ff7300"/><circle cx="19" cy="16" r="2" fill="#ff7300"/><line x1="7" y1="8.5" x2="10.5" y2="11.5" stroke="#ff7300" stroke-width="1.4"/><line x1="7" y1="15.5" x2="10.5" y2="12.5" stroke="#ff7300" stroke-width="1.4"/><line x1="13.5" y1="11.5" x2="17" y2="8.5" stroke="#ff7300" stroke-width="1.4"/><line x1="13.5" y1="12.5" x2="17" y2="15.5" stroke="#ff7300" stroke-width="1.4"/></svg></div><h3>Machine Learning</h3><p>From classical algorithms to deep learning — turning data into intelligent systems.</p><div class="ts-counter">1/12</div></div><div class="ts-shadow"></div></div>
-    </div>
+<!-- ===== TECH STACK ===== -->
+<section id="techstack-section" class="ts-section section-pad">
+  <div class="ts-header reveal">
+    <div class="section-tag">Tech Stack</div>
+    <h2 class="section-title">Tools I <span>Wield</span></h2>
+    <p class="section-subtitle">Technologies powering my data &amp; ML workflows.</p>
+  </div>
+  <div class="ts-grid">
+    <div class="ts-card reveal"><div class="ts-name">Python</div><div class="ts-category">Language</div></div>
+    <div class="ts-card reveal"><div class="ts-name">SQL</div><div class="ts-category">Database</div></div>
+    <div class="ts-card reveal"><div class="ts-name">TensorFlow / Keras</div><div class="ts-category">Deep Learning</div></div>
+    <div class="ts-card reveal"><div class="ts-name">Scikit-learn</div><div class="ts-category">ML Library</div></div>
+    <div class="ts-card reveal"><div class="ts-name">OpenCV</div><div class="ts-category">Computer Vision</div></div>
+    <div class="ts-card reveal"><div class="ts-name">NumPy</div><div class="ts-category">Computing</div></div>
+    <div class="ts-card reveal"><div class="ts-name">Pandas</div><div class="ts-category">Data Analysis</div></div>
+    <div class="ts-card reveal"><div class="ts-name">Matplotlib</div><div class="ts-category">Visualization</div></div>
+    <div class="ts-card reveal"><div class="ts-name">Seaborn</div><div class="ts-category">Visualization</div></div>
+    <div class="ts-card reveal"><div class="ts-name">Streamlit</div><div class="ts-category">Web Apps</div></div>
+    <div class="ts-card reveal"><div class="ts-name">Jupyter Notebook</div><div class="ts-category">Environment</div></div>
+    <div class="ts-card reveal"><div class="ts-name">Google Colab</div><div class="ts-category">Environment</div></div>
   </div>
 </section>
 
@@ -2241,57 +2156,6 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 50);
 }, { passive: true });
 
-/* ========== TECH STACK — scroll-driven card stack ========== */
-(function techStackScroller() {
-  const cardsContainer = document.getElementById('ts-cards');
-  const sectionEl = document.getElementById('techstack-section');
-  if (!cardsContainer || !sectionEl) return;
-  const cards = cardsContainer.querySelectorAll('.ts-card');
-  const numCards = cards.length;
-  let lastScrollTop = 0;
-  let ticking = false;
-
-  function update() {
-    ticking = false;
-    const containerRect = sectionEl.getBoundingClientRect();
-    const windowH = window.innerHeight + 300;
-    const scrollY = window.scrollY;
-    const scrollDown = scrollY > lastScrollTop;
-    lastScrollTop = scrollY <= 0 ? 0 : scrollY;
-
-    const progress = Math.max(0, (scrollY - containerRect.top + windowH) / (windowH * 2));
-
-    for (let i = numCards - 1; i >= 0; i--) {
-      const card = cards[i];
-      if (i === numCards - 1) {
-        // First card on top — slide up as soon as section enters
-        if (scrollY > containerRect.top - windowH * 0.2) {
-          card.classList.add('slide-up');
-        } else {
-          card.classList.remove('slide-up');
-        }
-      } else {
-        if (scrollDown) {
-          if (i >= numCards - progress) card.classList.add('slide-up');
-          else card.classList.remove('slide-up');
-        } else {
-          if (i > numCards - progress - 1) card.classList.add('slide-up');
-          else card.classList.remove('slide-up');
-        }
-      }
-    }
-  }
-
-  document.addEventListener('scroll', () => {
-    if (!ticking) {
-      window.requestAnimationFrame(update);
-      ticking = true;
-    }
-  }, { passive: true });
-
-  // Initial state
-  update();
-})();
 
 /* ========== HAMBURGER MENU ========== */
 const hamburger = document.getElementById('hamburger');
