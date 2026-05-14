@@ -1829,7 +1829,7 @@
       </div>
       <div class="hero-btns" id="hb">
         <a href="#contact" class="btn-primary">Hire Me</a>
-        <a href="#" class="btn-secondary" id="dl-cv-btn">
+        <a href="CV.pdf" download="Aryasatya-Muhammad-Aqsel-CV.pdf" class="btn-secondary" id="dl-cv-btn">
           <svg class="dl-icon" viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path d="M8 12L3 7l1.4-1.4L7 8.2V1h2v7.2l2.6-2.6L13 7 8 12zm-5 2v-2H1v4h14v-4h-2v2H3z"/></svg>
           <div class="dl-spinner"></div>
           Download CV
@@ -2471,13 +2471,12 @@ const sectionObserver = new IntersectionObserver(entries => {
 sections.forEach(s => sectionObserver.observe(s));
 
 /* ========== DOWNLOAD CV MICRO-ANIMATION ========== */
-document.getElementById('dl-cv-btn')?.addEventListener('click', function(e) {
-  e.preventDefault();
-  if(this.classList.contains('loading')) return;
+// The browser handles the actual file download (via href + download attr).
+// We just show the spinner briefly for visual feedback.
+document.getElementById('dl-cv-btn')?.addEventListener('click', function() {
+  if (this.classList.contains('loading')) return;
   this.classList.add('loading');
-  setTimeout(() => {
-    this.classList.remove('loading');
-  }, 2000);
+  setTimeout(() => this.classList.remove('loading'), 1500);
 });
 
 /* ========== PORTFOLIO FILTER ========== */
