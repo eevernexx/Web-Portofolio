@@ -1861,10 +1861,10 @@
           </div>
         </div>
         <div class="el-lang">
-          <div class="el-lang-flag">JW</div>
+          <div class="el-lang-flag">JV</div>
           <div class="el-lang-info">
-            <div class="el-lang-name">Jawa</div>
-            <div class="el-lang-level">Native</div>
+            <div class="el-lang-name">Javanese</div>
+            <div class="el-lang-level">Basic</div>
           </div>
         </div>
       </div>
@@ -1922,17 +1922,6 @@
         <span class="service-tag">Regression</span>
         <span class="service-tag">XGBoost</span>
         <span class="service-tag">Forecasting</span>
-      </div>
-    </div>
-    <div class="service-card reveal">
-      <div class="service-num">05</div>
-      <div class="service-icon">💻</div>
-      <h3 class="service-title">Full-Stack Web Development</h3>
-      <p class="service-desc">Crafting end-to-end web applications — from responsive frontends to scalable backends and well-structured databases.</p>
-      <div class="service-tags">
-        <span class="service-tag">Laravel</span>
-        <span class="service-tag">React</span>
-        <span class="service-tag">MySQL</span>
       </div>
     </div>
   </div>
@@ -2161,7 +2150,6 @@
         <div class="skill-item"><div class="skill-dot"></div><span>Pandas / NumPy</span></div>
         <div class="skill-item"><div class="skill-dot"></div><span>Data Visualization</span></div>
         <div class="skill-item"><div class="skill-dot"></div><span>MySQL / SQL</span></div>
-        <div class="skill-item"><div class="skill-dot"></div><span>Laravel / React</span></div>
       </div>
       <a href="#contact" class="btn-primary">Let's Work Together</a>
     </div>
@@ -2449,27 +2437,85 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 });
 
 /* ========== CONTACT FORM ========== */
-document.getElementById('contact-form')?.addEventListener('submit', function(e) {
-  e.preventDefault();
+// Opens user's email client with form data pre-filled (mailto:).
+// Works immediately on any device with a default email client — no backend needed.
+(function setupContactForm() {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
   const btn = document.getElementById('submit-btn');
   const txt = document.getElementById('submit-text');
   const spin = document.getElementById('submit-spin');
-  btn.disabled = true;
-  txt.style.display = 'none';
-  spin.style.display = 'block';
-  setTimeout(() => {
-    spin.style.display = 'none';
-    txt.textContent = '✓ Message Sent!';
-    txt.style.display = 'block';
-    btn.style.background = '#22c55e';
+  const RECIPIENT = 'aryasatyaaqsel@gmail.com';
+
+  // Basic email regex
+  const isEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+
+  function setError(input, hasError) {
+    if (!input) return;
+    input.style.borderColor = hasError ? '#ef4444' : '';
+    input.style.boxShadow = hasError ? '0 0 0 3px rgba(239,68,68,0.12)' : '';
+  }
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const fname = form.fname.value.trim();
+    const lname = form.lname.value.trim();
+    const email = form.email.value.trim();
+    const phone = form.phone.value.trim();
+    const subjectRaw = form.subject.value.trim();
+    const message = form.message.value.trim();
+
+    // Clear previous errors
+    [form.fname, form.lname, form.email, form.message].forEach(el => setError(el, false));
+
+    // Validate
+    let firstInvalid = null;
+    if (!fname) { setError(form.fname, true); firstInvalid = firstInvalid || form.fname; }
+    if (!lname) { setError(form.lname, true); firstInvalid = firstInvalid || form.lname; }
+    if (!email || !isEmail(email)) { setError(form.email, true); firstInvalid = firstInvalid || form.email; }
+    if (!message) { setError(form.message, true); firstInvalid = firstInvalid || form.message; }
+    if (firstInvalid) {
+      firstInvalid.focus();
+      txt.textContent = 'Please fill required fields';
+      btn.style.background = '#ef4444';
+      setTimeout(() => { txt.textContent = 'Send Message'; btn.style.background = ''; }, 2500);
+      return;
+    }
+
+    const fullName = `${fname} ${lname}`;
+    const subject = subjectRaw || `Portfolio Inquiry from ${fullName}`;
+
+    const body =
+      `Name: ${fullName}\n` +
+      `Email: ${email}\n` +
+      (phone ? `Phone: ${phone}\n` : '') +
+      `\nMessage:\n${message}\n\n` +
+      `— Sent via aryasatya portfolio site`;
+
+    const mailtoUrl = `mailto:${RECIPIENT}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    // Visual feedback
+    btn.disabled = true;
+    txt.style.display = 'none';
+    spin.style.display = 'block';
+
+    // Open email client
+    window.location.href = mailtoUrl;
+
     setTimeout(() => {
-      btn.disabled = false;
-      txt.textContent = 'Send Message';
-      btn.style.background = '';
-      this.reset();
-    }, 3000);
-  }, 2000);
-});
+      spin.style.display = 'none';
+      txt.textContent = '✓ Opening email client…';
+      txt.style.display = 'block';
+      btn.style.background = '#22c55e';
+      setTimeout(() => {
+        btn.disabled = false;
+        txt.textContent = 'Send Message';
+        btn.style.background = '';
+      }, 3500);
+    }, 600);
+  });
+})();
 
 /* ========== PARALLAX HERO BG ========== */
 window.addEventListener('scroll', () => {
