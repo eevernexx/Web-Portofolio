@@ -514,19 +514,33 @@
     width: 100%;
     overflow: hidden;
     position: relative;
-    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right,
+      transparent 0,
+      rgba(0,0,0,0.4) 4%,
+      #000 14%,
+      #000 86%,
+      rgba(0,0,0,0.4) 96%,
+      transparent 100%);
+    mask-image: linear-gradient(to right,
+      transparent 0,
+      rgba(0,0,0,0.4) 4%,
+      #000 14%,
+      #000 86%,
+      rgba(0,0,0,0.4) 96%,
+      transparent 100%);
+    -webkit-mask-mode: alpha;
+    mask-mode: alpha;
   }
   .tech-marquee-track {
     display: flex;
     align-items: center;
     width: max-content;
-    animation: marquee-scroll 38s linear infinite;
+    animation: marquee-scroll 28s linear infinite;
     will-change: transform;
   }
   @keyframes marquee-scroll {
-    from { transform: translate3d(0, 0, 0); }
-    to   { transform: translate3d(-50%, 0, 0); }
+    0%   { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); }
   }
   .tech-marquee:hover .tech-marquee-track {
     animation-play-state: paused;
