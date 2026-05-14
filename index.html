@@ -1081,6 +1081,10 @@
     color: #fff;
     line-height: 1;
   }
+  .about-exp-num.about-exp-num--text {
+    font-size: 1.3rem;
+    line-height: 1.15;
+  }
   .about-exp-label {
     font-size: 0.75rem;
     color: rgba(255,255,255,0.8);
@@ -1644,8 +1648,9 @@
     .about-visual { height: 280px; max-width: 360px; }
     .about-img-card.main { width: 180px; height: 220px; font-size: 3rem; }
     .about-img-card.accent { width: 140px; height: 160px; font-size: 2.5rem; }
-    .about-exp-badge { padding: 14px 18px; transform: translate(-50%, -50%); }
+    .about-exp-badge { padding: 12px 16px; transform: translate(-50%, -50%); }
     .about-exp-num { font-size: 1.8rem; }
+    .about-exp-num.about-exp-num--text { font-size: 1rem; line-height: 1.15; }
 
     .form-row { grid-template-columns: 1fr; }
     /* iOS Safari zooms when font-size < 16px on focus — force 16px */
@@ -1704,8 +1709,9 @@
     .about-visual { height: 240px; max-width: 320px; }
     .about-img-card.main { width: 150px; height: 190px; }
     .about-img-card.accent { width: 120px; height: 140px; }
-    .about-exp-badge { padding: 12px 16px; }
+    .about-exp-badge { padding: 10px 14px; }
     .about-exp-num { font-size: 1.6rem; }
+    .about-exp-num.about-exp-num--text { font-size: 0.88rem; line-height: 1.15; }
 
     /* Publication card — tighter on small phones */
     .publication-row { gap: 16px; }
@@ -2193,7 +2199,7 @@
         <img src="clipart1438513-removebg-preview.png" alt="Data analytics &amp; visualization" class="about-img-accent">
       </div>
       <div class="about-exp-badge">
-        <div class="about-exp-num" style="font-size:1.4rem;line-height:1.15;">Fresh<br>Graduate</div>
+        <div class="about-exp-num about-exp-num--text">Fresh<br>Graduate</div>
       </div>
     </div>
     <div class="about-content reveal">
