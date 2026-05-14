@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aryasatya Muhammad Aqsel — Data Analyst</title>
+<title>Aryasatya Muhammad Aqsel — Data Scientist</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
@@ -484,7 +484,72 @@
   }
   @keyframes rotate-slow { to { transform: translate(-50%,-45%) rotate(360deg); } }
 
-  /* Stats */
+  /* Tech Stack (replaces stats) */
+  .tech-stack {
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    z-index: 3;
+    margin-top: 36px;
+    width: 100%;
+  }
+  .tech-stack-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gray);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .tech-stack-label::before {
+    content: '';
+    width: 28px; height: 1px;
+    background: var(--gray);
+  }
+  .tech-stack-list {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .tech-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 99px;
+    padding: 6px 16px 6px 6px;
+    transition: all var(--transition);
+  }
+  .tech-item:hover {
+    border-color: var(--orange-mid);
+    transform: translateY(-2px);
+    background: rgba(255,255,255,0.06);
+  }
+  .tech-icon {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.96);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .tech-icon img {
+    width: 18px;
+    height: 18px;
+    display: block;
+  }
+  .tech-name {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--gray-light);
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+  }
+
+  /* (Legacy) Stats — kept hidden in case re-enabled */
   .hero-stats {
     position: relative;
     bottom: auto; left: auto;
@@ -1542,7 +1607,7 @@
       <p class="hero-greeting" id="hg">Hi I am</p>
       <p class="hero-name" id="hn">Aryasatya Muhammad Aqsel</p>
       <h1 class="hero-title" id="ht">
-        <span class="line"><span>Data Analyst</span></span>
+        <span class="line"><span>Data Scientist</span></span>
       </h1>
       <div class="hero-socials" id="hs">
         <a href="https://www.instagram.com/aqselll" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram">
@@ -1564,21 +1629,34 @@
         </a>
       </div>
 
-      <!-- Stats — inside content flow -->
-      <div class="hero-stats" id="hero-stats">
-        <div class="stat-card">
-          <div class="stat-number" data-target="2" data-suffix="">0</div>
-          <div class="stat-label">Years Experience</div>
-        </div>
-        <div class="stat-sep"></div>
-        <div class="stat-card">
-          <div class="stat-number" data-target="11">0</div>
-          <div class="stat-label">Projects Done</div>
-        </div>
-        <div class="stat-sep"></div>
-        <div class="stat-card">
-          <div class="stat-number" data-target="100" data-suffix="%">0</div>
-          <div class="stat-label">Reliable</div>
+      <!-- Tech Stack — inside content flow -->
+      <div class="tech-stack" id="hero-stats">
+        <span class="tech-stack-label">Tech Stack</span>
+        <div class="tech-stack-list">
+          <div class="tech-item">
+            <div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="" loading="lazy"></div>
+            <span class="tech-name">Python</span>
+          </div>
+          <div class="tech-item">
+            <div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="" loading="lazy"></div>
+            <span class="tech-name">TensorFlow</span>
+          </div>
+          <div class="tech-item">
+            <div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg" alt="" loading="lazy"></div>
+            <span class="tech-name">Scikit-learn</span>
+          </div>
+          <div class="tech-item">
+            <div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="" loading="lazy"></div>
+            <span class="tech-name">Pandas</span>
+          </div>
+          <div class="tech-item">
+            <div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="" loading="lazy"></div>
+            <span class="tech-name">MySQL</span>
+          </div>
+          <div class="tech-item">
+            <div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="" loading="lazy"></div>
+            <span class="tech-name">React</span>
+          </div>
         </div>
       </div>
     </div>
@@ -1597,24 +1675,6 @@
     <div class="scroll-line"></div>
   </div>
 </section>
-
-<!-- Mobile Stats Slider (outside hero, below it) -->
-<div class="stat-slider-wrap" style="background:var(--bg); padding: 0 20px 32px;">
-  <div class="stat-slider">
-    <div class="stat-card">
-      <div class="stat-number">2</div>
-      <div class="stat-label">Years Experience</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">11+</div>
-      <div class="stat-label">Projects Done</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-number">100%</div>
-      <div class="stat-label">Reliable</div>
-    </div>
-  </div>
-</div>
 
 <!-- ===== SERVICES ===== -->
 <section id="services" class="section-pad">
