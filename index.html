@@ -1279,6 +1279,42 @@
     transform: translateY(-4px);
   }
   .cert-card:hover::after { opacity: 1; }
+
+  /* Featured cert card — highlighted variant */
+  .cert-card-featured {
+    border-color: rgba(255, 115, 0, 0.45);
+    background: linear-gradient(135deg, rgba(255, 115, 0, 0.08) 0%, var(--glass) 60%);
+    box-shadow: 0 12px 36px rgba(255, 115, 0, 0.12);
+  }
+  .cert-card-featured::after {
+    opacity: 0.4;
+  }
+  .cert-card-featured:hover {
+    border-color: var(--orange);
+    box-shadow: 0 16px 44px rgba(255, 115, 0, 0.22);
+  }
+  .cert-card-featured:hover::after { opacity: 1; }
+  .cert-card-featured .cert-icon {
+    background: var(--orange);
+    border-color: var(--orange);
+    box-shadow: 0 6px 16px rgba(255, 115, 0, 0.35);
+  }
+  .cert-featured-tag {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    background: var(--orange);
+    color: #fff;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 4px 10px;
+    border-radius: 99px;
+    text-transform: uppercase;
+    z-index: 2;
+    box-shadow: 0 4px 12px rgba(255, 115, 0, 0.35);
+  }
+
   .cert-icon {
     width: 56px; height: 56px;
     background: var(--orange-dim);
@@ -2076,7 +2112,8 @@
     <p class="section-subtitle">Professional credentials validating my technical competence and hands-on experience.</p>
   </div>
   <div class="cert-grid">
-    <div class="cert-card reveal">
+    <div class="cert-card cert-card-featured reveal">
+      <span class="cert-featured-tag">★ Featured</span>
       <div class="cert-icon">🎓</div>
       <div class="cert-content">
         <div class="cert-badge-row">
