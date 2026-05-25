@@ -484,7 +484,7 @@
   }
   @keyframes rotate-slow { to { transform: translate(-50%,-45%) rotate(360deg); } }
 
-  /* ===== TECH STACK — Pill style (inline in hero) ===== */
+  /* ===== TECH STACK — Tile grid (inline in hero) ===== */
   .ts-hero {
     margin-top: 36px;
     opacity: 0;
@@ -500,7 +500,7 @@
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    margin-bottom: 14px;
+    margin-bottom: 18px;
   }
   .ts-label::before {
     content: '';
@@ -508,77 +508,81 @@
     background: var(--gray);
   }
   .ts-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+    gap: 12px;
+    max-width: 600px;
   }
   .ts-card {
-    display: inline-flex;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 10px;
     background: var(--glass);
     border: 1px solid var(--border);
-    border-radius: 99px;
-    padding: 6px 16px 6px 6px;
-    transition: border-color var(--transition), background var(--transition), transform var(--transition);
+    border-radius: 16px;
+    padding: 16px 8px 14px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color var(--transition), background var(--transition), transform var(--transition), box-shadow var(--transition);
+  }
+  .ts-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(circle at 50% 0%, var(--orange-dim) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
   }
   .ts-card:hover {
     border-color: var(--orange-mid);
-    background: rgba(255,255,255,0.06);
-    transform: translateY(-2px);
+    background: rgba(255,255,255,0.05);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px rgba(0,0,0,0.35);
   }
+  .ts-card:hover::after { opacity: 1; }
   .ts-icon {
-    width: 32px; height: 32px;
-    border-radius: 50%;
+    width: 46px; height: 46px;
+    border-radius: 12px;
     background: rgba(255, 255, 255, 0.96);
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
+    transition: transform var(--transition);
   }
+  .ts-card:hover .ts-icon { transform: scale(1.08); }
   .ts-icon img, .ts-icon svg {
-    width: 20px; height: 20px;
+    width: 28px; height: 28px;
     display: block;
   }
   .ts-icon-orange {
     background: rgba(255, 115, 0, 0.12);
     border: 1px solid rgba(255, 115, 0, 0.35);
   }
-  .ts-card::before {
-    content: '';
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 100%; height: 2px;
-    background: var(--orange);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.4s ease;
-  }
-  .ts-card:hover::before { transform: scaleX(1); }
-  .ts-card:hover {
-    transform: translateY(-4px);
-    border-color: var(--orange-mid);
-  }
   .ts-name {
-    font-size: 0.85rem;
+    font-size: 0.74rem;
     font-weight: 500;
     color: var(--gray-light);
-    white-space: nowrap;
+    text-align: center;
+    line-height: 1.3;
     letter-spacing: 0.01em;
   }
   .ts-category { display: none; }
-  /* Tablet/mobile: hero stacks, pills center under content */
+  /* Tablet/mobile: hero stacks, grid centers under content */
   @media (max-width: 1023px) {
-    .ts-grid { justify-content: center; }
+    .ts-grid { margin-left: auto; margin-right: auto; }
     .ts-label { align-self: center; }
     .ts-hero { text-align: center; }
   }
   @media (max-width: 767px) {
     .ts-hero { margin-top: 28px; }
-    .ts-grid { gap: 8px; }
-    .ts-card { padding: 5px 14px 5px 5px; }
-    .ts-icon { width: 28px; height: 28px; }
-    .ts-icon img, .ts-icon svg { width: 18px; height: 18px; }
-    .ts-name { font-size: 0.78rem; }
+    .ts-grid {
+      grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+      gap: 10px;
+    }
+    .ts-card { padding: 13px 6px 11px; border-radius: 14px; }
+    .ts-icon { width: 40px; height: 40px; border-radius: 10px; }
+    .ts-icon img, .ts-icon svg { width: 24px; height: 24px; }
+    .ts-name { font-size: 0.68rem; }
   }
 
   /* ===== EDUCATION & LANGUAGES ===== */
@@ -1852,8 +1856,9 @@
           <div class="ts-card"><div class="ts-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecolab/googlecolab-original.svg" alt="" loading="lazy" decoding="async"></div><div class="ts-name">Google Colab</div></div>
           <div class="ts-card"><div class="ts-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="" loading="lazy" decoding="async"></div><div class="ts-name">Next.js</div></div>
           <div class="ts-card"><div class="ts-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="" loading="lazy" decoding="async"></div><div class="ts-name">React</div></div>
-          <div class="ts-card"><div class="ts-icon ts-icon-orange"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 2C8.268 2 2 8.268 2 16c0 4.817 2.404 9.078 6.086 11.686L6.5 30h2.8l.9-1.8A13.9 13.9 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 2c6.627 0 12 5.373 12 12S22.627 28 16 28a11.93 11.93 0 01-5.5-1.338L11.7 25H9l1.2-2.4A11.96 11.96 0 014 16C4 9.373 9.373 4 16 4zm-4 6v4H8v2h4v4h2v-4h4v-4h-4V10h-2zm0 2h2v2h-2v-2z" fill="#38bdf8"/><text x="8" y="23" font-size="9" font-weight="700" fill="#38bdf8" font-family="monospace">TW</text></svg></div><div class="ts-name">Tailwind CSS</div></div>
-          <div class="ts-card"><div class="ts-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="" loading="lazy" decoding="async"></div><div class="ts-name">HTML/CSS</div></div>
+          <div class="ts-card"><div class="ts-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="" loading="lazy" decoding="async"></div><div class="ts-name">Tailwind CSS</div></div>
+          <div class="ts-card"><div class="ts-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="" loading="lazy" decoding="async"></div><div class="ts-name">HTML5</div></div>
+          <div class="ts-card"><div class="ts-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="" loading="lazy" decoding="async"></div><div class="ts-name">CSS3</div></div>
         </div>
       </div>
 
