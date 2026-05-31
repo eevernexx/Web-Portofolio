@@ -29,7 +29,7 @@ A modern, dark-themed portfolio designed around a single-file architecture for f
 1. **Hero** — name, role, social links, CTA, tech stack grid
 2. **Education & Languages** — UDINUS, Global Madani, language proficiency
 3. **Services** — Machine Learning, Computer Vision, Data Analysis, Predictive Modeling
-4. **Portfolio** — Live projects (F1 Strategy Dashboard, Jakarta Air Quality EDA, Gue Ngekost, this site)
+4. **Portfolio** — Live projects (F1 Strategy Dashboard, Jakarta Air Quality EDA, Gue Ngekost, PaperStory, this site)
 5. **Research** — *A Roasted Coffee Bean Identification Using ResNet50 Model* (JAIC, Dec 2025)
 6. **Certifications** — BNSP Associate Data Scientist, AI Literacy, Diskominfo internship, UX Writing
 7. **About** — short bio and visual block
@@ -88,6 +88,7 @@ The site is deployed on Vercel as a static project — no framework preset requi
 | F1 Dashboard Visualization | Dashboard | https://f1-strategy-dashboard-phi.vercel.app/ |
 | Jakarta Air Quality EDA | Dashboard | https://eda-project-indonesia-urban-air-qua.vercel.app/ |
 | Gue Ngekost | Web App | https://aplikasi-gue-ngekost.vercel.app/ |
+| PaperStory | Web App | https://paper-story-five.vercel.app/ |
 | Personal Portfolio | Website | https://web-portofolio-nu-one.vercel.app/ |
 
 ## Publication
