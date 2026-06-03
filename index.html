@@ -1000,6 +1000,109 @@
   }
   .portfolio-card:hover .portfolio-link { opacity: 1; transform: scale(1); }
 
+  /* ===== PORTFOLIO PREVIEW MODAL ===== */
+  #portfolio-preview {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  #portfolio-preview.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+  .preview-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.82);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .preview-panel {
+    position: relative;
+    width: 100%;
+    max-width: 680px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transform: scale(0.9) translateY(24px);
+    transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  #portfolio-preview.open .preview-panel { transform: scale(1) translateY(0); }
+  .preview-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 2;
+    width: 36px;
+    height: 36px;
+    background: rgba(0,0,0,0.55);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 50%;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .preview-close:hover { background: var(--orange); transform: scale(1.1); }
+  .preview-img-wrap {
+    width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    background: var(--bg3);
+  }
+  .preview-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+  .preview-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    gap: 16px;
+  }
+  .preview-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-top: 3px;
+  }
+  .preview-visit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 22px;
+    background: var(--orange);
+    color: #fff;
+    border-radius: 40px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: background 0.2s ease, transform 0.15s ease;
+    cursor: pointer;
+  }
+  .preview-visit-btn:hover { background: #e06800; transform: translateY(-1px); }
+  @media (max-width: 480px) {
+    .preview-footer { flex-direction: column; align-items: flex-start; }
+    .preview-visit-btn { width: 100%; justify-content: center; }
+  }
+
   /* Gradient BGs for cards */
   .grad-1 { background: linear-gradient(135deg, #1a1020 0%, #0f0a1a 100%); }
   .grad-2 { background: linear-gradient(135deg, #0d1a0f 0%, #081208 100%); }
@@ -2016,7 +2119,7 @@
     </div>
   </div>
   <div class="portfolio-grid" id="portfolio-grid">
-    <a href="https://web-portofolio-nu-one.vercel.app/" target="_blank" rel="noopener noreferrer" class="portfolio-card reveal" data-cat="website" style="text-decoration:none;color:inherit;">
+    <div class="portfolio-card reveal" data-cat="website" data-href="https://web-portofolio-nu-one.vercel.app/" data-name="Personal Portfolio Site" role="button" tabindex="0">
       <div class="portfolio-card-img" style="background:#0a0a0a;padding:0;">
         <img src="thumbnail%20web%20porto.png" alt="Personal portfolio site preview" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;">
       </div>
@@ -2026,9 +2129,9 @@
           <div class="portfolio-name">Personal Portfolio Site</div>
         </div>
       </div>
-      <span class="portfolio-link" aria-hidden="true">↗</span>
-    </a>
-    <a href="https://f1-strategy-dashboard-phi.vercel.app/" target="_blank" rel="noopener noreferrer" class="portfolio-card reveal" data-cat="dashboard" style="text-decoration:none;color:inherit;">
+      <a href="https://web-portofolio-nu-one.vercel.app/" target="_blank" rel="noopener noreferrer" class="portfolio-link" aria-label="Open Personal Portfolio Site">↗</a>
+    </div>
+    <div class="portfolio-card reveal" data-cat="dashboard" data-href="https://f1-strategy-dashboard-phi.vercel.app/" data-name="F1 Dashboard Visualization" role="button" tabindex="0">
       <div class="portfolio-card-img" style="background:#0a0a0a;padding:0;">
         <img src="F1%20dashboard%20thumbnail.png" alt="F1 Dashboard Visualization preview" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;">
       </div>
@@ -2038,9 +2141,9 @@
           <div class="portfolio-name">F1 Dashboard Visualization</div>
         </div>
       </div>
-      <span class="portfolio-link" aria-hidden="true">↗</span>
-    </a>
-    <a href="https://eda-project-indonesia-urban-air-qua.vercel.app/#/" target="_blank" rel="noopener noreferrer" class="portfolio-card reveal" data-cat="dashboard" style="text-decoration:none;color:inherit;">
+      <a href="https://f1-strategy-dashboard-phi.vercel.app/" target="_blank" rel="noopener noreferrer" class="portfolio-link" aria-label="Open F1 Dashboard Visualization">↗</a>
+    </div>
+    <div class="portfolio-card reveal" data-cat="dashboard" data-href="https://eda-project-indonesia-urban-air-qua.vercel.app/#/" data-name="Jakarta Air Quality EDA" role="button" tabindex="0">
       <div class="portfolio-card-img" style="background:#0a0a0a;padding:0;">
         <img src="kualitas%20udara%20jakarta.png" alt="Jakarta Air Quality EDA dashboard preview" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;">
       </div>
@@ -2050,9 +2153,9 @@
           <div class="portfolio-name">Jakarta Air Quality EDA</div>
         </div>
       </div>
-      <span class="portfolio-link" aria-hidden="true">↗</span>
-    </a>
-    <a href="https://aplikasi-gue-ngekost.vercel.app/" target="_blank" rel="noopener noreferrer" class="portfolio-card reveal" data-cat="webapp" style="text-decoration:none;color:inherit;">
+      <a href="https://eda-project-indonesia-urban-air-qua.vercel.app/#/" target="_blank" rel="noopener noreferrer" class="portfolio-link" aria-label="Open Jakarta Air Quality EDA">↗</a>
+    </div>
+    <div class="portfolio-card reveal" data-cat="webapp" data-href="https://aplikasi-gue-ngekost.vercel.app/" data-name="Gue Ngekost" role="button" tabindex="0">
       <div class="portfolio-card-img" style="background:#0a0a0a;padding:0;">
         <img src="ss%20thumbnail%20Gue%20Ngekost.jpg" alt="Gue Ngekost web app preview" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;">
       </div>
@@ -2062,9 +2165,9 @@
           <div class="portfolio-name">Gue Ngekost</div>
         </div>
       </div>
-      <span class="portfolio-link" aria-hidden="true">↗</span>
-    </a>
-    <a href="https://paper-story-five.vercel.app/" target="_blank" rel="noopener noreferrer" class="portfolio-card reveal" data-cat="webapp" style="text-decoration:none;color:inherit;">
+      <a href="https://aplikasi-gue-ngekost.vercel.app/" target="_blank" rel="noopener noreferrer" class="portfolio-link" aria-label="Open Gue Ngekost">↗</a>
+    </div>
+    <div class="portfolio-card reveal" data-cat="webapp" data-href="https://paper-story-five.vercel.app/" data-name="PaperStory" role="button" tabindex="0">
       <div class="portfolio-card-img" style="background:#0a0a0a;padding:0;">
         <img src="ss%20thumbnail%20paperstory.png" alt="PaperStory — research papers as interactive scrollytelling" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;">
       </div>
@@ -2074,10 +2177,42 @@
           <div class="portfolio-name">PaperStory</div>
         </div>
       </div>
-      <span class="portfolio-link" aria-hidden="true">↗</span>
-    </a>
+      <a href="https://paper-story-five.vercel.app/" target="_blank" rel="noopener noreferrer" class="portfolio-link" aria-label="Open PaperStory">↗</a>
+    </div>
+    <div class="portfolio-card reveal" data-cat="website" data-href="https://web-porto-nissy.vercel.app/" data-name="Nissy Portfolio" role="button" tabindex="0">
+      <div class="portfolio-card-img" style="background:#0a0a0a;padding:0;">
+        <img src="thumbnail%20web%20nissy.png" alt="Nissy portfolio website preview" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top center;display:block;">
+      </div>
+      <div class="portfolio-overlay">
+        <div class="portfolio-info">
+          <div class="portfolio-cat">Website</div>
+          <div class="portfolio-name">Nissy Portfolio</div>
+        </div>
+      </div>
+      <a href="https://web-porto-nissy.vercel.app/" target="_blank" rel="noopener noreferrer" class="portfolio-link" aria-label="Open Nissy Portfolio">↗</a>
+    </div>
   </div>
 </section>
+
+<!-- ===== PORTFOLIO PREVIEW MODAL ===== -->
+<div id="portfolio-preview" role="dialog" aria-modal="true" aria-hidden="true" aria-label="Project preview">
+  <div class="preview-backdrop"></div>
+  <div class="preview-panel">
+    <button class="preview-close" aria-label="Close preview">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="preview-img-wrap">
+      <img id="preview-thumb" src="" alt="" loading="eager">
+    </div>
+    <div class="preview-footer">
+      <div class="preview-meta">
+        <div id="preview-cat" class="portfolio-cat"></div>
+        <div id="preview-name" class="preview-title"></div>
+      </div>
+      <a id="preview-visit-btn" href="#" target="_blank" rel="noopener noreferrer" class="preview-visit-btn">Visit Project ↗</a>
+    </div>
+  </div>
+</div>
 
 <!-- ===== PUBLICATIONS ===== -->
 <section id="publications" class="section-pad">
@@ -2485,14 +2620,65 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
       const cat = card.dataset.cat;
       const show = filter === 'all' || cat === filter;
       gsap.to(card, {
-        opacity: show ? 1 : 0.2,
+        opacity: show ? 1 : 0.15,
         scale: show ? 1 : 0.95,
         duration: 0.35,
-        ease: 'power2.out'
+        ease: 'power2.out',
+        onComplete() { card.style.pointerEvents = show ? '' : 'none'; }
       });
+      if (show) card.style.pointerEvents = '';
     });
   });
 });
+
+/* ========== PORTFOLIO PREVIEW MODAL ========== */
+(function setupPortfolioPreview() {
+  const modal = document.getElementById('portfolio-preview');
+  if (!modal) return;
+  const backdrop = modal.querySelector('.preview-backdrop');
+  const closeBtn = modal.querySelector('.preview-close');
+  const thumbEl = document.getElementById('preview-thumb');
+  const catEl = document.getElementById('preview-cat');
+  const nameEl = document.getElementById('preview-name');
+  const visitBtn = document.getElementById('preview-visit-btn');
+
+  function openPreview(card) {
+    const href = card.dataset.href || '#';
+    const name = card.dataset.name || '';
+    const cat = card.querySelector('.portfolio-cat')?.textContent || '';
+    const imgSrc = card.querySelector('img')?.getAttribute('src') || '';
+    thumbEl.src = imgSrc;
+    thumbEl.alt = name + ' preview';
+    catEl.textContent = cat;
+    nameEl.textContent = name;
+    visitBtn.href = href;
+    modal.setAttribute('aria-hidden', 'false');
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function closePreview() {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    setTimeout(() => { thumbEl.src = ''; }, 380);
+  }
+
+  document.querySelectorAll('.portfolio-card').forEach(card => {
+    card.addEventListener('click', function(e) {
+      if (e.target.closest('.portfolio-link')) return;
+      openPreview(this);
+    });
+    card.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openPreview(this); }
+    });
+  });
+
+  backdrop.addEventListener('click', closePreview);
+  closeBtn.addEventListener('click', closePreview);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal.classList.contains('open')) closePreview(); });
+})();
 
 /* ========== CONTACT FORM ========== */
 // Opens user's email client with form data pre-filled (mailto:).
