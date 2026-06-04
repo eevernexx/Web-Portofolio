@@ -1004,7 +1004,7 @@
   #portfolio-preview {
     position: fixed;
     inset: 0;
-    z-index: 9999;
+    z-index: 9990; /* below custom cursor (9998/9999) so the cursor stays visible over the modal */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1050,7 +1050,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+    cursor: none;
     transition: background 0.2s ease, transform 0.2s ease;
   }
   .preview-close:hover { background: var(--orange); transform: scale(1.1); }
@@ -1099,7 +1099,7 @@
     white-space: nowrap;
     flex-shrink: 0;
     transition: background 0.2s ease, transform 0.15s ease;
-    cursor: pointer;
+    cursor: none;
   }
   .preview-visit-btn:hover { background: #e06800; transform: translateY(-1px); }
   @media (max-width: 480px) {
@@ -1615,6 +1615,7 @@
     .hamburger { cursor: auto; }
     .mobile-menu a { cursor: auto; }
     .social-btn { cursor: auto; }
+    .preview-close, .preview-visit-btn { cursor: auto; }
   }
 
   /* ===== RESPONSIVE ===== */
