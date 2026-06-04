@@ -28,7 +28,7 @@ A modern, dark-themed portfolio designed around a single-file architecture for f
 
 1. **Hero** — name, role, social links, CTA, tech stack grid
 2. **Education & Languages** — UDINUS, Global Madani, language proficiency
-3. **Services** — Machine Learning, Computer Vision, Data Analysis, Predictive Modeling
+3. **Services** — Machine Learning, Computer Vision, Data Analysis, Predictive Modeling, Data Visualization & Dashboards, Web Development
 4. **Portfolio** — Live projects (F1 Strategy Dashboard, Jakarta Air Quality EDA, Gue Ngekost, PaperStory, this site)
 5. **Research** — *A Roasted Coffee Bean Identification Using ResNet50 Model* (JAIC, Dec 2025)
 6. **Certifications** — BNSP Associate Data Scientist, AI Literacy, Diskominfo internship, UX Writing
