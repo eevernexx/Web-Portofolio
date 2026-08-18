@@ -145,6 +145,19 @@
     box-shadow:var(--shadow);
   }
 
+  /* ---------- scroll reveal ---------- */
+  .scroll-progress{position:fixed;top:0;left:0;height:4px;width:0%;z-index:200;
+    background:linear-gradient(90deg,var(--coral),var(--yellow),var(--teal),var(--violet));}
+  .reveal{
+    opacity:0;transform:translateY(42px) scale(.9) rotate(-2.5deg);
+    transition:opacity .6s ease-out, transform .65s cubic-bezier(.34,1.56,.64,1);
+    will-change:transform,opacity;
+  }
+  .reveal.is-visible{opacity:1;transform:translateY(0) scale(1) rotate(0deg);}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1!important;transform:none!important;transition:none!important;}
+  }
+
   /* ================= NAV ================= */
   .nav{position:sticky;top:0;z-index:100;background:var(--cream);border-bottom:var(--line) solid var(--ink);}
   .nav__inner{display:flex;align-items:center;justify-content:space-between;padding-top:16px;padding-bottom:16px;}
@@ -231,6 +244,18 @@
     .hero__actions,.hero__social{justify-content:center;}
     .hero__art{margin-top:20px;}
     .hero__status{left:50%;transform:translateX(-50%) rotate(-3deg);bottom:-30px;}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    @keyframes heroIn{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:translateY(0);}}
+    @keyframes heroRoleIn{from{opacity:0;transform:translateY(26px) rotate(-1.2deg);}to{opacity:1;transform:translateY(0) rotate(-1.2deg);}}
+    @keyframes heroArtIn{from{opacity:0;transform:translateY(30px) scale(.92);}to{opacity:1;transform:translateY(0) scale(1);}}
+    .hero__eyebrow{animation:heroIn .7s cubic-bezier(.22,1,.36,1) both;}
+    .hero__name{animation:heroIn .7s cubic-bezier(.22,1,.36,1) .08s both;}
+    .hero__role{animation:heroRoleIn .7s cubic-bezier(.22,1,.36,1) .16s both;}
+    .hero__desc{animation:heroIn .7s cubic-bezier(.22,1,.36,1) .24s both;}
+    .hero__actions{animation:heroIn .7s cubic-bezier(.22,1,.36,1) .32s both;}
+    .hero__social{animation:heroIn .7s cubic-bezier(.22,1,.36,1) .4s both;}
+    .hero__art{animation:heroArtIn .8s cubic-bezier(.22,1,.36,1) .2s both;}
   }
 
   /* ================= TECH STACK MARQUEE ================= */
@@ -325,6 +350,20 @@
   .research__card .btn{margin-top:20px;}
   @media (max-width:760px){.research__card{grid-template-columns:1fr;}.research__thumb{width:100%;}}
 
+  /* ================= EXPERIENCE ================= */
+  .exp__list{display:flex;flex-direction:column;gap:18px;}
+  .exp__card{padding:28px 32px;display:flex;align-items:center;gap:24px;}
+  .exp__icon{
+    width:64px;height:64px;flex:none;border:var(--line) solid var(--ink);border-radius:16px;
+    display:flex;align-items:center;justify-content:center;font-size:28px;background:var(--teal);box-shadow:var(--shadow-sm);
+  }
+  .exp__body{flex:1;min-width:0;}
+  .exp__meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
+  .exp__card h3{font-size:19px;font-weight:700;}
+  .exp__card .cred__org{margin-top:6px;}
+  .exp__card .btn{margin-top:16px;}
+  @media (max-width:640px){.exp__card{flex-direction:column;align-items:flex-start;text-align:left;}}
+
   /* ================= CREDENTIALS ================= */
   .cred__grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
   .cred__card{padding:24px;position:relative;}
@@ -384,10 +423,37 @@
   }
   .footer__social a:active{transform:translate(1px,1px);}
   .footer small{color:var(--muted);font-size:13.5px;}
-  @media (max-width:900px){.footer__social a{width:44px;height:44px;}}
+  @media (max-width:900px){
+    .footer__social a{width:44px;height:44px;}
+    .footer__inner{flex-direction:column;text-align:center;}
+    .footer{padding-bottom:88px;}
+  }
+
+  /* ================= MUSIC TOGGLE ================= */
+  .music-toggle{
+    position:fixed;left:24px;bottom:24px;z-index:90;width:52px;height:52px;border-radius:50%;
+    background:var(--paper);border:var(--line) solid var(--ink);box-shadow:var(--shadow);
+    display:flex;align-items:center;justify-content:center;touch-action:manipulation;
+    transition:transform .12s ease, box-shadow .12s ease, background-color .25s ease, color .25s ease, border-color .25s ease;
+  }
+  @media (hover:hover){.music-toggle:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 0 var(--ink);}}
+  .music-toggle:active{transform:translate(2px,2px);box-shadow:2px 2px 0 0 var(--ink);}
+  .music-toggle .icon{width:22px;height:22px;}
+  .music-toggle.is-playing{background:var(--coral);}
+  .music-bars{display:none;align-items:flex-end;gap:3px;height:18px;}
+  .music-toggle.is-playing .icon{display:none;}
+  .music-toggle.is-playing .music-bars{display:flex;}
+  .music-bars span{width:4px;background:var(--coral-ink);border-radius:2px;animation:musicBar .9s ease-in-out infinite;}
+  .music-bars span:nth-child(1){animation-delay:0s;}
+  .music-bars span:nth-child(2){animation-delay:.2s;}
+  .music-bars span:nth-child(3){animation-delay:.4s;}
+  @keyframes musicBar{0%,100%{height:6px;}50%{height:18px;}}
+  @media (prefers-reduced-motion:reduce){.music-bars span{animation:none;height:12px;}}
+  @media (max-width:900px){.music-toggle{left:16px;bottom:16px;width:48px;height:48px;}}
 </style>
 </head>
 <body>
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 <a class="skip-link" href="#main">Skip to content</a>
 
 <svg style="display:none" aria-hidden="true">
@@ -403,6 +469,7 @@
   <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l2.6 6.6L22 9.3l-5.4 4.6L18.2 21 12 17.3 5.8 21l1.6-7.1L2 9.3l7.4-.7z" fill="currentColor"/></symbol>
   <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M12 3v2.4M12 18.6V21M21 12h-2.4M5.4 12H3M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7M18.4 18.4l-1.7-1.7M7.3 7.3L5.6 5.6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
   <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/><circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="17" cy="16" r="3" stroke="currentColor" stroke-width="2" fill="none"/></symbol>
 </svg>
 
 <header class="nav" id="nav">
@@ -638,7 +705,7 @@
         </article>
 
         <article class="card proj__card" data-cat="Web App">
-          <div class="proj__thumb"><img src="/ss thumbnail Gue Ngekost.jpg" alt="Gue Ngekost preview" loading="lazy"></div>
+          <div class="proj__thumb"><img src="/thumbnail baru gue ngekost.png" alt="Gue Ngekost preview" loading="lazy"></div>
           <div class="proj__body">
             <div class="proj__cat-row"><span class="tag tag--violet">Web App</span>
               <a class="proj__link" href="https://aplikasi-gue-ngekost.vercel.app/" target="_blank" rel="noopener" aria-label="Open Gue Ngekost"><svg class="icon" style="width:16px;height:16px;"><use href="#i-arrow"/></svg></a>
@@ -698,14 +765,37 @@
     </div>
   </section>
 
+  <!-- ================= EXPERIENCE ================= -->
+  <section id="experience">
+    <div class="deco deco-diamond" style="top:24px;left:6%;background:var(--teal);"></div>
+    <div class="container">
+      <div class="head">
+        <span class="eyebrow">Experience</span>
+        <h2>Work Experience</h2>
+        <p>Hands-on professional experience applying data and informatics skills in the field.</p>
+      </div>
+      <div class="exp__list">
+        <div class="card exp__card">
+          <span class="exp__icon">💼</span>
+          <div class="exp__body">
+            <div class="exp__meta"><span class="tag">Internship</span> <span class="tag">May to Jun 2025</span></div>
+            <h3>Industrial Internship Program</h3>
+            <p class="cred__org">Department of Communication, Informatics, Statistics &amp; Cryptography, Semarang City Government</p>
+            <a class="btn btn--sm" href="/Sertifikat Magang Diskominfo Semarang.jpg" target="_blank" rel="noopener">View Certificate <svg class="icon" style="width:15px;height:15px;"><use href="#i-arrow"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= CREDENTIALS ================= -->
   <section id="credentials">
     <div class="deco deco-star" style="bottom:10px;left:4%;color:var(--violet);"><svg width="100%" height="100%"><use href="#i-star"/></svg></div>
     <div class="container">
       <div class="head">
         <span class="eyebrow">Credentials</span>
-        <h2>Certifications &amp; Internships</h2>
-        <p>Professional credentials validating my technical competence and hands-on experience.</p>
+        <h2>Certifications</h2>
+        <p>Professional certifications validating my technical competence.</p>
       </div>
       <div class="cred__grid">
         <div class="card cred__card">
@@ -740,14 +830,6 @@
           <h3>AI Literacy for Everyone: Understand, Apply, Create</h3>
           <p class="cred__org">BASS Training Center × Gemawira UDINUS · Supported by Google.org &amp; Asian Development Bank</p>
           <a class="btn btn--sm" href="/Sertifikat Gemawira Udinus-Literasi AI.pdf" target="_blank" rel="noopener">View Certificate <svg class="icon" style="width:15px;height:15px;"><use href="#i-arrow"/></svg></a>
-        </div>
-        <div class="card cred__card">
-          <div class="cred__top"><span class="cred__icon" style="background:var(--teal);">💼</span>
-            <div><span class="tag">Internship</span> <span class="tag">May to Jun 2025</span></div>
-          </div>
-          <h3>Industrial Internship Program</h3>
-          <p class="cred__org">Department of Communication, Informatics, Statistics &amp; Cryptography, Semarang City Government</p>
-          <a class="btn btn--sm" href="/Sertifikat Magang Diskominfo Semarang.jpg" target="_blank" rel="noopener">View Certificate <svg class="icon" style="width:15px;height:15px;"><use href="#i-arrow"/></svg></a>
         </div>
         <div class="card cred__card">
           <div class="cred__top"><span class="cred__icon" style="background:var(--coral);">✍️</span>
@@ -840,6 +922,12 @@
   </div>
 </footer>
 
+<audio id="bgMusic" loop preload="none" src="/Glory of Love.mp3"></audio>
+<button class="music-toggle" id="musicToggle" type="button" aria-label="Play background music" aria-pressed="false">
+  <svg class="icon" id="musicToggleIcon"><use href="#i-music"/></svg>
+  <span class="music-bars" id="musicBars" aria-hidden="true"><span></span><span></span><span></span></span>
+</button>
+
 <script>
 (function(){
   // dark mode toggle
@@ -875,6 +963,27 @@
     });
   }
 
+  // background music toggle
+  var musicToggle = document.getElementById('musicToggle');
+  var bgMusic = document.getElementById('bgMusic');
+  if(musicToggle && bgMusic){
+    bgMusic.volume = 0.45;
+    musicToggle.addEventListener('click', function(){
+      if(bgMusic.paused){
+        bgMusic.play().then(function(){
+          musicToggle.classList.add('is-playing');
+          musicToggle.setAttribute('aria-pressed','true');
+          musicToggle.setAttribute('aria-label','Pause background music');
+        }).catch(function(){});
+      } else {
+        bgMusic.pause();
+        musicToggle.classList.remove('is-playing');
+        musicToggle.setAttribute('aria-pressed','false');
+        musicToggle.setAttribute('aria-label','Play background music');
+      }
+    });
+  }
+
   // mobile nav toggle
   var toggle = document.getElementById('navToggle');
   var links = document.getElementById('navLinks');
@@ -907,6 +1016,48 @@
       });
     }, {rootMargin:'-45% 0px -45% 0px'});
     sections.forEach(function(s){ obs.observe(s); });
+  }
+
+  // scroll progress bar
+  var progressBar = document.getElementById('scrollProgress');
+  if(progressBar){
+    var progTicking = false;
+    var updateProgress = function(){
+      var doc = document.documentElement;
+      var max = doc.scrollHeight - doc.clientHeight;
+      var pct = max > 0 ? (doc.scrollTop / max) * 100 : 0;
+      progressBar.style.width = pct + '%';
+      progTicking = false;
+    };
+    window.addEventListener('scroll', function(){
+      if(!progTicking){ requestAnimationFrame(updateProgress); progTicking = true; }
+    }, {passive:true});
+    updateProgress();
+  }
+
+  // scroll reveal animations
+  var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var revealEls = document.querySelectorAll('.head, .edu__card, .lang__card, .svc__card, .proj__card, .research__card, .exp__card, .cred__card, .about__visual, .about__copy, .contact__info-card, .form-card');
+  var revealGroupCount = new Map();
+  revealEls.forEach(function(el){
+    var parent = el.parentElement;
+    var i = revealGroupCount.get(parent) || 0;
+    el.style.transitionDelay = Math.min(i * 70, 420) + 'ms';
+    revealGroupCount.set(parent, i + 1);
+    el.classList.add('reveal');
+  });
+  if(reduceMotion || !('IntersectionObserver' in window)){
+    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+  } else {
+    var revealObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          revealObs.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -8% 0px'});
+    revealEls.forEach(function(el){ revealObs.observe(el); });
   }
 
   // portfolio filter
