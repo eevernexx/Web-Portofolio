@@ -8,6 +8,17 @@
 <meta property="og:title" content="Aryasatya Muhammad Aqsel, Data Scientist">
 <meta property="og:description" content="BNSP-certified Data Scientist. Published CV researcher (ResNet50, 94.5% accuracy). Building models, dashboards, and web apps.">
 <meta property="og:type" content="website">
+<meta name="color-scheme" content="light dark">
+<script>
+(function(){
+  try{
+    var t = localStorage.getItem('theme');
+    if(t === 'dark' || t === 'light'){
+      document.documentElement.setAttribute('data-theme', t);
+    }
+  }catch(e){}
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -35,8 +46,25 @@
     --shadow-sm: 3px 3px 0 0 var(--ink);
     --shadow-lg: 8px 8px 0 0 var(--ink);
     --container: 1180px;
+    color-scheme: light;
   }
-  *,*::before,*::after{box-sizing:border-box;}
+  :root[data-theme="dark"]{
+    --cream:#15120E;
+    --paper:#211C16;
+    --ink:#F5EFE4;
+    --muted:#B3A896;
+    color-scheme: dark;
+  }
+  @media (prefers-color-scheme:dark){
+    :root:not([data-theme="light"]){
+      --cream:#15120E;
+      --paper:#211C16;
+      --ink:#F5EFE4;
+      --muted:#B3A896;
+      color-scheme: dark;
+    }
+  }
+  *,*::before,*::after{box-sizing:border-box;transition:background-color .25s ease,border-color .25s ease,color .25s ease;}
   html{scroll-behavior:smooth;}
   body{
     margin:0;
@@ -95,7 +123,7 @@
     font-family:'Inter',sans-serif;font-weight:700;font-size:15px;
     border:var(--line) solid var(--ink);border-radius:var(--r-pill);
     padding:14px 26px;background:var(--paper);color:var(--ink);
-    box-shadow:var(--shadow);transition:transform .12s ease, box-shadow .12s ease;
+    box-shadow:var(--shadow);transition:transform .12s ease, box-shadow .12s ease, background-color .25s ease, color .25s ease, border-color .25s ease;
     white-space:nowrap;
   }
   .btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 0 var(--ink);}
@@ -124,6 +152,14 @@
   .nav__links a{font-weight:600;font-size:14px;padding:9px 15px;border-radius:var(--r-pill);}
   .nav__links a.is-active{background:var(--ink);color:var(--cream);}
   .nav__right{display:flex;align-items:center;gap:10px;}
+  .theme-toggle{
+    width:40px;height:40px;flex:none;display:flex;align-items:center;justify-content:center;
+    background:var(--paper);border:2.5px solid var(--ink);border-radius:11px;box-shadow:var(--shadow-sm);
+    transition:transform .12s ease, box-shadow .12s ease, background-color .25s ease, color .25s ease, border-color .25s ease;
+  }
+  .theme-toggle:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 0 var(--ink);}
+  .theme-toggle:active{transform:translate(1px,1px);box-shadow:1px 1px 0 0 var(--ink);}
+  .theme-toggle .icon{width:18px;height:18px;}
   .nav__toggle{display:none;background:var(--paper);border:2.5px solid var(--ink);border-radius:10px;padding:8px;box-shadow:var(--shadow-sm);}
   .icon{width:20px;height:20px;stroke:currentColor;fill:none;}
   .icon-fill{fill:currentColor;stroke:none;}
@@ -155,7 +191,7 @@
   .hero__social a{
     width:42px;height:42px;display:flex;align-items:center;justify-content:center;
     background:var(--paper);border:2.5px solid var(--ink);border-radius:11px;box-shadow:var(--shadow-sm);
-    transition:transform .12s ease, box-shadow .12s ease;
+    transition:transform .12s ease, box-shadow .12s ease, background-color .25s ease, color .25s ease, border-color .25s ease;
   }
   .hero__social a:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 0 var(--ink);}
   .hero__art{position:relative;justify-self:center;}
@@ -248,8 +284,8 @@
   .filters button.is-active{background:var(--ink);color:var(--cream);}
   .proj__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
   .proj__card{overflow:hidden;display:flex;flex-direction:column;}
-  .proj__thumb{aspect-ratio:16/10;overflow:hidden;border-bottom:var(--line) solid var(--ink);background:var(--cream);}
-  .proj__thumb img{width:100%;height:100%;object-fit:cover;transition:transform .25s ease;}
+  .proj__thumb{aspect-ratio:16/9;overflow:hidden;border-bottom:var(--line) solid var(--ink);background:var(--cream);display:flex;align-items:center;justify-content:center;}
+  .proj__thumb img{width:100%;height:100%;object-fit:contain;transition:transform .25s ease;}
   .proj__card:hover .proj__thumb img{transform:scale(1.05);}
   .proj__body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1;}
   .proj__cat-row{display:flex;align-items:center;justify-content:space-between;}
@@ -257,7 +293,7 @@
   .proj__link{
     width:36px;height:36px;flex:none;border:2.5px solid var(--ink);border-radius:10px;
     display:flex;align-items:center;justify-content:center;background:var(--paper);
-    transition:transform .12s ease, box-shadow .12s ease;box-shadow:var(--shadow-sm);
+    transition:transform .12s ease, box-shadow .12s ease, background-color .25s ease, color .25s ease, border-color .25s ease;box-shadow:var(--shadow-sm);
   }
   .proj__link:hover{transform:translate(-2px,-2px) rotate(8deg);box-shadow:4px 4px 0 0 var(--ink);}
   @media (max-width:980px){.proj__grid{grid-template-columns:1fr 1fr;}}
@@ -265,7 +301,8 @@
 
   /* ================= RESEARCH ================= */
   .research__card{padding:32px;display:grid;grid-template-columns:220px 1fr;gap:30px;align-items:start;}
-  .research__thumb{border:var(--line) solid var(--ink);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);}
+  .research__thumb{border:var(--line) solid var(--ink);border-radius:14px;overflow:hidden;box-shadow:var(--shadow-sm);aspect-ratio:4/3;background:var(--cream);display:flex;align-items:center;justify-content:center;}
+  .research__thumb img{width:100%;height:100%;object-fit:contain;}
   .research__meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
   .research__card h3{font-size:clamp(1.2rem,2.2vw,1.55rem);font-weight:700;margin-bottom:8px;}
   .research__authors{font-weight:700;font-size:14.5px;}
@@ -345,6 +382,8 @@
   <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/></symbol>
   <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/></symbol>
   <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2l2.6 6.6L22 9.3l-5.4 4.6L18.2 21 12 17.3 5.8 21l1.6-7.1L2 9.3l7.4-.7z" fill="currentColor"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M12 3v2.4M12 18.6V21M21 12h-2.4M5.4 12H3M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7M18.4 18.4l-1.7-1.7M7.3 7.3L5.6 5.6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/></symbol>
 </svg>
 
 <header class="nav" id="nav">
@@ -360,6 +399,9 @@
     </nav>
     <div class="nav__right">
       <a href="#contact" class="btn btn--sm btn--coral">Hire Me</a>
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+        <svg class="icon" id="themeToggleIcon"><use href="#i-moon"/></svg>
+      </button>
       <button class="nav__toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
         <svg class="icon" id="navToggleIcon"><use href="#i-menu"/></svg>
       </button>
@@ -765,6 +807,37 @@
 
 <script>
 (function(){
+  // dark mode toggle
+  var root = document.documentElement;
+  var themeToggle = document.getElementById('themeToggle');
+  var themeIcon = document.getElementById('themeToggleIcon');
+  var mql = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+
+  function currentTheme(){
+    var attr = root.getAttribute('data-theme');
+    if(attr === 'dark' || attr === 'light') return attr;
+    return (mql && mql.matches) ? 'dark' : 'light';
+  }
+  function applyIcon(theme){
+    themeIcon.innerHTML = '<use href="#' + (theme === 'dark' ? 'i-sun' : 'i-moon') + '"/>';
+    themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+    themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+  applyIcon(currentTheme());
+  themeToggle.addEventListener('click', function(){
+    var next = currentTheme() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try{ localStorage.setItem('theme', next); }catch(e){}
+    applyIcon(next);
+  });
+  if(mql){
+    mql.addEventListener('change', function(){
+      var stored = null;
+      try{ stored = localStorage.getItem('theme'); }catch(e){}
+      if(!stored) applyIcon(currentTheme());
+    });
+  }
+
   // mobile nav toggle
   var toggle = document.getElementById('navToggle');
   var links = document.getElementById('navLinks');
