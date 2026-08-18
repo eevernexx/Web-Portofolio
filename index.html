@@ -314,9 +314,14 @@
   @media (max-width:640px){.svc__grid{grid-template-columns:1fr;}}
 
   /* ================= PORTFOLIO ================= */
-  .filters{display:flex;gap:8px;flex-wrap:wrap;background:var(--paper);border:2.5px solid var(--ink);border-radius:var(--r-pill);padding:6px;box-shadow:var(--shadow-sm);width:max-content;margin:0 auto 40px;}
-  .filters button{background:transparent;border:none;font-weight:700;font-size:13.5px;padding:9px 18px;border-radius:var(--r-pill);color:var(--ink);}
+  .filters{display:flex;gap:8px;flex-wrap:wrap;background:var(--paper);border:2.5px solid var(--ink);border-radius:var(--r-pill);padding:6px;box-shadow:var(--shadow-sm);width:max-content;max-width:100%;margin:0 auto 40px;}
+  .filters button{background:transparent;border:none;font-weight:700;font-size:13.5px;padding:9px 18px;border-radius:var(--r-pill);color:var(--ink);touch-action:manipulation;}
   .filters button.is-active{background:var(--ink);color:var(--cream);}
+  @media (max-width:640px){
+    .filters{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+    .filters::-webkit-scrollbar{display:none;}
+    .filters button{flex:none;}
+  }
   .proj__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
   .proj__card{overflow:hidden;display:flex;flex-direction:column;}
   .proj__thumb{aspect-ratio:16/9;overflow:hidden;border-bottom:var(--line) solid var(--ink);background:var(--cream);display:flex;align-items:center;justify-content:center;}
@@ -352,7 +357,7 @@
 
   /* ================= EXPERIENCE ================= */
   .exp__list{display:flex;flex-direction:column;gap:18px;}
-  .exp__card{padding:28px 32px;display:flex;align-items:center;gap:24px;}
+  .exp__card{padding:28px 32px;display:flex;align-items:flex-start;gap:24px;}
   .exp__icon{
     width:64px;height:64px;flex:none;border:var(--line) solid var(--ink);border-radius:16px;
     display:flex;align-items:center;justify-content:center;font-size:28px;background:var(--teal);box-shadow:var(--shadow-sm);
@@ -361,6 +366,8 @@
   .exp__meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
   .exp__card h3{font-size:19px;font-weight:700;}
   .exp__card .cred__org{margin-top:6px;}
+  .exp__desc{color:var(--ink);font-size:14.5px;line-height:1.65;margin-top:10px;}
+  .exp__tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;}
   .exp__card .btn{margin-top:16px;}
   @media (max-width:640px){.exp__card{flex-direction:column;align-items:flex-start;text-align:left;}}
 
@@ -772,14 +779,26 @@
       <div class="head">
         <span class="eyebrow">Experience</span>
         <h2>Work Experience</h2>
-        <p>Hands-on professional experience applying data and informatics skills in the field.</p>
+        <p>Professional and entrepreneurial experience, from founding a digital service initiative to hands-on technical work in government.</p>
       </div>
       <div class="exp__list">
+        <div class="card exp__card">
+          <span class="exp__icon" style="background:var(--violet);">🚀</span>
+          <div class="exp__body">
+            <div class="exp__meta"><span class="tag">Founder</span> <span class="tag">2026 to Present</span></div>
+            <h3>Founder &amp; Content Creator</h3>
+            <p class="cred__org">Aksara Digital</p>
+            <p class="exp__desc">Co-founded Aksara Digital, a digital service initiative focused on academic and project assistance, responsible for content creation, social media management, customer communication, and supporting the development of digital services.</p>
+            <div class="exp__tags">
+              <span class="tag tag--violet">Entrepreneurship</span><span class="tag">Content Creation</span><span class="tag">Social Media</span><span class="tag">Digital Services</span>
+            </div>
+          </div>
+        </div>
         <div class="card exp__card">
           <span class="exp__icon">💼</span>
           <div class="exp__body">
             <div class="exp__meta"><span class="tag">Internship</span> <span class="tag">May to Jun 2025</span></div>
-            <h3>Industrial Internship Program</h3>
+            <h3>Web Developer</h3>
             <p class="cred__org">Department of Communication, Informatics, Statistics &amp; Cryptography, Semarang City Government</p>
             <a class="btn btn--sm" href="/Sertifikat Magang Diskominfo Semarang.jpg" target="_blank" rel="noopener">View Certificate <svg class="icon" style="width:15px;height:15px;"><use href="#i-arrow"/></svg></a>
           </div>
@@ -922,7 +941,7 @@
   </div>
 </footer>
 
-<audio id="bgMusic" loop preload="none" src="/Glory of Love.mp3"></audio>
+<audio id="bgMusic" loop autoplay muted preload="auto" src="/Glory of Love.mp3"></audio>
 <button class="music-toggle" id="musicToggle" type="button" aria-label="Play background music" aria-pressed="false">
   <svg class="icon" id="musicToggleIcon"><use href="#i-music"/></svg>
   <span class="music-bars" id="musicBars" aria-hidden="true"><span></span><span></span><span></span></span>
@@ -963,23 +982,47 @@
     });
   }
 
-  // background music toggle
+  // background music: auto-start on load, muted where the browser
+  // requires a gesture first, then unmute on the user's first interaction
   var musicToggle = document.getElementById('musicToggle');
   var bgMusic = document.getElementById('bgMusic');
   if(musicToggle && bgMusic){
     bgMusic.volume = 0.45;
+
+    function markPlaying(){
+      musicToggle.classList.add('is-playing');
+      musicToggle.setAttribute('aria-pressed','true');
+      musicToggle.setAttribute('aria-label','Pause background music');
+    }
+    function markPaused(){
+      musicToggle.classList.remove('is-playing');
+      musicToggle.setAttribute('aria-pressed','false');
+      musicToggle.setAttribute('aria-label','Play background music');
+    }
+
+    bgMusic.muted = false;
+    bgMusic.play().then(markPlaying).catch(function(){
+      bgMusic.muted = true;
+      bgMusic.play().catch(function(){});
+    });
+
+    function unmuteOnFirstInteraction(e){
+      if(e && musicToggle.contains(e.target)) return; // toggle button handles its own click
+      if(!bgMusic.muted && !bgMusic.paused) return;
+      bgMusic.muted = false;
+      bgMusic.play().then(markPlaying).catch(function(){});
+    }
+    ['click','keydown','touchstart'].forEach(function(evt){
+      window.addEventListener(evt, unmuteOnFirstInteraction, {once:true, passive:true});
+    });
+
     musicToggle.addEventListener('click', function(){
-      if(bgMusic.paused){
-        bgMusic.play().then(function(){
-          musicToggle.classList.add('is-playing');
-          musicToggle.setAttribute('aria-pressed','true');
-          musicToggle.setAttribute('aria-label','Pause background music');
-        }).catch(function(){});
+      if(bgMusic.paused || bgMusic.muted){
+        bgMusic.muted = false;
+        bgMusic.play().then(markPlaying).catch(function(){});
       } else {
         bgMusic.pause();
-        musicToggle.classList.remove('is-playing');
-        musicToggle.setAttribute('aria-pressed','false');
-        musicToggle.setAttribute('aria-label','Play background music');
+        markPaused();
       }
     });
   }
