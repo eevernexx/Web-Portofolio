@@ -9,6 +9,7 @@
 <meta property="og:description" content="BNSP-certified Data Scientist. Published CV researcher (ResNet50, 94.5% accuracy). Building models, dashboards, and web apps.">
 <meta property="og:type" content="website">
 <meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FCEEDF" id="themeColorMeta">
 <script>
 (function(){
   try{
@@ -17,6 +18,10 @@
       document.documentElement.setAttribute('data-theme', t);
     }
   }catch(e){}
+  var attr = document.documentElement.getAttribute('data-theme');
+  var isDark = attr === 'dark' || (attr !== 'light' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  var m = document.getElementById('themeColorMeta');
+  if(m) m.setAttribute('content', isDark ? '#15120E' : '#FCEEDF');
 })();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -64,8 +69,8 @@
       color-scheme: dark;
     }
   }
-  *,*::before,*::after{box-sizing:border-box;transition:background-color .25s ease,border-color .25s ease,color .25s ease;}
-  html{scroll-behavior:smooth;}
+  *,*::before,*::after{box-sizing:border-box;transition:background-color .25s ease,border-color .25s ease,color .25s ease;-webkit-tap-highlight-color:transparent;}
+  html{scroll-behavior:smooth;background:var(--cream);}
   body{
     margin:0;
     background:var(--cream);
@@ -124,14 +129,14 @@
     border:var(--line) solid var(--ink);border-radius:var(--r-pill);
     padding:14px 26px;background:var(--paper);color:var(--ink);
     box-shadow:var(--shadow);transition:transform .12s ease, box-shadow .12s ease, background-color .25s ease, color .25s ease, border-color .25s ease;
-    white-space:nowrap;
+    white-space:nowrap;touch-action:manipulation;
   }
-  .btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 0 var(--ink);}
+  @media (hover:hover){.btn:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 0 var(--ink);}}
   .btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 0 var(--ink);}
   .btn--coral{background:var(--coral);color:var(--coral-ink);}
   .btn--ink{background:var(--ink);color:var(--cream);}
   .btn--sm{padding:9px 18px;font-size:13.5px;box-shadow:var(--shadow-sm);border-width:2.5px;}
-  .btn--sm:hover{transform:translate(-1.5px,-1.5px);box-shadow:4.5px 4.5px 0 0 var(--ink);}
+  @media (hover:hover){.btn--sm:hover{transform:translate(-1.5px,-1.5px);box-shadow:4.5px 4.5px 0 0 var(--ink);}}
   .btn--icon{padding:11px;border-radius:var(--r-md);}
 
   /* ---------- cards ---------- */
@@ -156,20 +161,23 @@
     width:40px;height:40px;flex:none;display:flex;align-items:center;justify-content:center;
     background:var(--paper);border:2.5px solid var(--ink);border-radius:11px;box-shadow:var(--shadow-sm);
     transition:transform .12s ease, box-shadow .12s ease, background-color .25s ease, color .25s ease, border-color .25s ease;
+    touch-action:manipulation;
   }
-  .theme-toggle:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 0 var(--ink);}
+  @media (hover:hover){.theme-toggle:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 0 var(--ink);}}
   .theme-toggle:active{transform:translate(1px,1px);box-shadow:1px 1px 0 0 var(--ink);}
   .theme-toggle .icon{width:18px;height:18px;}
-  .nav__toggle{display:none;background:var(--paper);border:2.5px solid var(--ink);border-radius:10px;padding:8px;box-shadow:var(--shadow-sm);}
+  .nav__toggle{display:none;background:var(--paper);border:2.5px solid var(--ink);border-radius:10px;padding:8px;box-shadow:var(--shadow-sm);touch-action:manipulation;}
+  .nav__toggle:active{transform:translate(1px,1px);}
   .icon{width:20px;height:20px;stroke:currentColor;fill:none;}
   .icon-fill{fill:currentColor;stroke:none;}
   @media (max-width:900px){
-    .nav__links{position:fixed;top:73px;left:16px;right:16px;flex-direction:column;align-items:stretch;
+    .nav__links{position:absolute;top:100%;margin-top:10px;left:16px;right:16px;flex-direction:column;align-items:stretch;
       background:var(--paper);box-shadow:var(--shadow-lg);border-radius:var(--r-lg);padding:10px;
       transform:translateY(-14px);opacity:0;pointer-events:none;transition:all .18s ease;}
     .nav__links.is-open{transform:translateY(0);opacity:1;pointer-events:auto;}
     .nav__links a{padding:13px 16px;text-align:center;}
-    .nav__toggle{display:block;}
+    .nav__toggle{display:flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;}
+    .theme-toggle{width:44px;height:44px;}
     .nav__right .btn--sm{display:none;}
   }
 
@@ -192,8 +200,10 @@
     width:42px;height:42px;display:flex;align-items:center;justify-content:center;
     background:var(--paper);border:2.5px solid var(--ink);border-radius:11px;box-shadow:var(--shadow-sm);
     transition:transform .12s ease, box-shadow .12s ease, background-color .25s ease, color .25s ease, border-color .25s ease;
+    touch-action:manipulation;
   }
-  .hero__social a:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 0 var(--ink);}
+  @media (hover:hover){.hero__social a:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 0 var(--ink);}}
+  .hero__social a:active{transform:translate(1px,1px);box-shadow:2px 2px 0 0 var(--ink);}
   .hero__art{position:relative;justify-self:center;}
   .hero__frame{
     width:min(340px,100%);aspect-ratio:1/1.05;overflow:hidden;background:var(--violet);
@@ -226,7 +236,7 @@
   /* ================= TECH STACK MARQUEE ================= */
   .stack{padding:34px 0;background:var(--ink);border-top:var(--line) solid var(--ink);border-bottom:var(--line) solid var(--ink);overflow:hidden;}
   .stack__track{display:flex;gap:14px;width:max-content;animation:marquee 34s linear infinite;}
-  .stack:hover .stack__track{animation-play-state:paused;}
+  @media (hover:hover){.stack:hover .stack__track{animation-play-state:paused;}}
   @media (prefers-reduced-motion:reduce){.stack__track{animation:none;}}
   @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
   .stack__chip{
@@ -286,7 +296,7 @@
   .proj__card{overflow:hidden;display:flex;flex-direction:column;}
   .proj__thumb{aspect-ratio:16/9;overflow:hidden;border-bottom:var(--line) solid var(--ink);background:var(--cream);display:flex;align-items:center;justify-content:center;}
   .proj__thumb img{width:100%;height:100%;object-fit:contain;transition:transform .25s ease;}
-  .proj__card:hover .proj__thumb img{transform:scale(1.05);}
+  @media (hover:hover){.proj__card:hover .proj__thumb img{transform:scale(1.05);}}
   .proj__body{padding:18px 20px 20px;display:flex;flex-direction:column;gap:10px;flex:1;}
   .proj__cat-row{display:flex;align-items:center;justify-content:space-between;}
   .proj__card h3{font-size:17px;font-weight:700;}
@@ -294,10 +304,13 @@
     width:36px;height:36px;flex:none;border:2.5px solid var(--ink);border-radius:10px;
     display:flex;align-items:center;justify-content:center;background:var(--paper);
     transition:transform .12s ease, box-shadow .12s ease, background-color .25s ease, color .25s ease, border-color .25s ease;box-shadow:var(--shadow-sm);
+    touch-action:manipulation;
   }
-  .proj__link:hover{transform:translate(-2px,-2px) rotate(8deg);box-shadow:4px 4px 0 0 var(--ink);}
+  @media (hover:hover){.proj__link:hover{transform:translate(-2px,-2px) rotate(8deg);box-shadow:4px 4px 0 0 var(--ink);}}
+  .proj__link:active{transform:translate(1px,1px);box-shadow:2px 2px 0 0 var(--ink);}
   @media (max-width:980px){.proj__grid{grid-template-columns:1fr 1fr;}}
   @media (max-width:640px){.proj__grid{grid-template-columns:1fr;}}
+  @media (max-width:900px){.proj__link{width:44px;height:44px;}}
 
   /* ================= RESEARCH ================= */
   .research__card{padding:32px;display:grid;grid-template-columns:220px 1fr;gap:30px;align-items:start;}
@@ -359,13 +372,19 @@
   .field textarea{resize:vertical;min-height:110px;}
   @media (max-width:900px){.contact__grid{grid-template-columns:1fr;}}
   @media (max-width:560px){.form-row{grid-template-columns:1fr;}}
+  @media (max-width:900px){.field input,.field textarea{font-size:16px;}}
 
   /* ================= FOOTER ================= */
   .footer{border-top:var(--line) solid var(--ink);padding:34px 0;}
   .footer__inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
   .footer__social{display:flex;gap:10px;}
-  .footer__social a{width:38px;height:38px;display:flex;align-items:center;justify-content:center;border:2.5px solid var(--ink);border-radius:10px;background:var(--paper);}
+  .footer__social a{
+    width:38px;height:38px;display:flex;align-items:center;justify-content:center;border:2.5px solid var(--ink);border-radius:10px;background:var(--paper);
+    transition:transform .12s ease, background-color .25s ease, color .25s ease, border-color .25s ease;touch-action:manipulation;
+  }
+  .footer__social a:active{transform:translate(1px,1px);}
   .footer small{color:var(--muted);font-size:13.5px;}
+  @media (max-width:900px){.footer__social a{width:44px;height:44px;}}
 </style>
 </head>
 <body>
@@ -589,7 +608,7 @@
       <div class="proj__grid" id="projGrid">
 
         <article class="card proj__card" data-cat="Website">
-          <div class="proj__thumb"><img src="/thumbnail web porto.png" alt="Personal Portfolio Site preview" loading="lazy"></div>
+          <div class="proj__thumb"><img src="/ss thumbnail web portfolio baru.png" alt="Personal Portfolio Site preview" loading="lazy"></div>
           <div class="proj__body">
             <div class="proj__cat-row"><span class="tag tag--coral">Website</span>
               <a class="proj__link" href="/" aria-label="Open Personal Portfolio Site"><svg class="icon" style="width:16px;height:16px;"><use href="#i-arrow"/></svg></a>
@@ -697,6 +716,22 @@
           <h3>Associate Data Scientist</h3>
           <p class="cred__org">University of Dian Nuswantoro (UDINUS) Certification Body · Indonesian Professional Certification Authority (BNSP)</p>
           <a class="btn btn--sm" href="/Sertifikat LSP UDINUS.pdf" target="_blank" rel="noopener">View Certificate <svg class="icon" style="width:15px;height:15px;"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="card cred__card">
+          <div class="cred__top"><span class="cred__icon" style="background:var(--teal);">🗂️</span>
+            <div><span class="tag">Course</span> <span class="tag">Jun 2026</span></div>
+          </div>
+          <h3>Foundations: Data, Data, Everywhere</h3>
+          <p class="cred__org">Google · Course 1 of the Google Data Analytics Certificate, offered through Coursera</p>
+          <a class="btn btn--sm" href="/CERTIFICATE COURSE 1 - Foundations Data, Data, Everywhere!.pdf" target="_blank" rel="noopener">View Certificate <svg class="icon" style="width:15px;height:15px;"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="card cred__card">
+          <div class="cred__top"><span class="cred__icon" style="background:var(--coral);">🔎</span>
+            <div><span class="tag">Course</span> <span class="tag">Jul 2026</span></div>
+          </div>
+          <h3>Ask Questions to Make Data-Driven Decisions</h3>
+          <p class="cred__org">Google · Course 2 of the Google Data Analytics Certificate, offered through Coursera</p>
+          <a class="btn btn--sm" href="/Ask Questions to Make Data-Driven Decisions Certif.pdf" target="_blank" rel="noopener">View Certificate <svg class="icon" style="width:15px;height:15px;"><use href="#i-arrow"/></svg></a>
         </div>
         <div class="card cred__card">
           <div class="cred__top"><span class="cred__icon" style="background:var(--violet);">🧠</span>
@@ -818,10 +853,12 @@
     if(attr === 'dark' || attr === 'light') return attr;
     return (mql && mql.matches) ? 'dark' : 'light';
   }
+  var themeColorMeta = document.getElementById('themeColorMeta');
   function applyIcon(theme){
     themeIcon.innerHTML = '<use href="#' + (theme === 'dark' ? 'i-sun' : 'i-moon') + '"/>';
     themeToggle.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
     themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    if(themeColorMeta) themeColorMeta.setAttribute('content', theme === 'dark' ? '#15120E' : '#FCEEDF');
   }
   applyIcon(currentTheme());
   themeToggle.addEventListener('click', function(){
