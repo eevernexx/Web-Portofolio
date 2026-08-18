@@ -293,7 +293,9 @@
   .lang__code{
     width:52px;height:52px;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;
     border:var(--line) solid var(--ink);border-radius:14px;font-family:'Space Mono',monospace;font-weight:700;font-size:15px;
+    overflow:hidden;
   }
+  .flag-icon{width:100%;height:100%;display:block;}
   .lang__card:nth-child(1) .lang__code{background:var(--coral);color:var(--coral-ink);}
   .lang__card:nth-child(2) .lang__code{background:var(--violet);color:#fff;}
   .lang__card:nth-child(3) .lang__code{background:var(--teal);color:var(--teal-ink);}
@@ -362,6 +364,8 @@
     width:64px;height:64px;flex:none;border:var(--line) solid var(--ink);border-radius:16px;
     display:flex;align-items:center;justify-content:center;font-size:28px;background:var(--teal);box-shadow:var(--shadow-sm);
   }
+  .exp__icon--logo{background:#fff;padding:8px;overflow:hidden;}
+  .exp__icon--logo img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;}
   .exp__body{flex:1;min-width:0;}
   .exp__meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;}
   .exp__card h3{font-size:19px;font-weight:700;}
@@ -377,6 +381,8 @@
   .cred__featured{position:absolute;top:-13px;right:20px;}
   .cred__top{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
   .cred__icon{width:44px;height:44px;border:2.5px solid var(--ink);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex:none;}
+  .cred__icon--logo{background:#fff;padding:6px;overflow:hidden;}
+  .cred__icon--logo img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;}
   .cred__card h3{font-size:17px;font-weight:700;margin-top:12px;}
   .cred__org{color:var(--muted);font-size:14px;margin-top:6px;line-height:1.5;}
   .cred__card .btn{margin-top:16px;}
@@ -477,6 +483,8 @@
   <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="2" fill="none"/><path d="M12 3v2.4M12 18.6V21M21 12h-2.4M5.4 12H3M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7M18.4 18.4l-1.7-1.7M7.3 7.3L5.6 5.6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
   <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20.5 14.5A8.5 8.5 0 1 1 9.5 3.5a7 7 0 0 0 11 11z" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/></symbol>
   <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/><circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="17" cy="16" r="3" stroke="currentColor" stroke-width="2" fill="none"/></symbol>
+  <symbol id="flag-id" viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice"><rect width="60" height="15" fill="#CE1126"/><rect y="15" width="60" height="15" fill="#FFFFFF"/></symbol>
+  <symbol id="flag-gb" viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice"><rect width="60" height="30" fill="#00247D"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#FFFFFF" stroke-width="8"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#CF142B" stroke-width="3"/><path d="M30,0 V30 M0,15 H60" stroke="#FFFFFF" stroke-width="12"/><path d="M30,0 V30 M0,15 H60" stroke="#CF142B" stroke-width="7"/></symbol>
 </svg>
 
 <header class="nav" id="nav">
@@ -609,8 +617,8 @@
         <h2>I Speak</h2>
       </div>
       <div class="lang__grid">
-        <div class="card lang__card"><div class="lang__code">ID</div><h4>Bahasa Indonesia</h4><p class="level">Native</p></div>
-        <div class="card lang__card"><div class="lang__code">EN</div><h4>English</h4><p class="level">Professional Working</p></div>
+        <div class="card lang__card"><div class="lang__code"><svg class="flag-icon" aria-hidden="true"><use href="#flag-id"/></svg></div><h4>Bahasa Indonesia</h4><p class="level">Native</p></div>
+        <div class="card lang__card"><div class="lang__code"><svg class="flag-icon" aria-hidden="true"><use href="#flag-gb"/></svg></div><h4>English</h4><p class="level">Professional Working</p></div>
         <div class="card lang__card"><div class="lang__code">JV</div><h4>Javanese</h4><p class="level">Basic</p></div>
       </div>
     </div>
@@ -783,7 +791,7 @@
       </div>
       <div class="exp__list">
         <div class="card exp__card">
-          <span class="exp__icon" style="background:var(--violet);">🚀</span>
+          <span class="exp__icon exp__icon--logo"><img src="/logo aksara digital.jpg" alt="Aksara Digital logo" loading="lazy"></span>
           <div class="exp__body">
             <div class="exp__meta"><span class="tag">Founder</span> <span class="tag">2026 to Present</span></div>
             <h3>Founder &amp; Content Creator</h3>
@@ -795,7 +803,7 @@
           </div>
         </div>
         <div class="card exp__card">
-          <span class="exp__icon">💼</span>
+          <span class="exp__icon exp__icon--logo"><img src="/Lambang_Kota_Semarang.png" alt="City of Semarang emblem" loading="lazy"></span>
           <div class="exp__body">
             <div class="exp__meta"><span class="tag">Internship</span> <span class="tag">May to Jun 2025</span></div>
             <h3>Web Developer</h3>
@@ -819,7 +827,7 @@
       <div class="cred__grid">
         <div class="card cred__card">
           <span class="tag tag--yellow cred__featured">★ Featured</span>
-          <div class="cred__top"><span class="cred__icon" style="background:var(--yellow);">🎓</span>
+          <div class="cred__top"><span class="cred__icon cred__icon--logo"><img src="/Logo_Badan_Nasional_Sertifikasi_Profesi.png" alt="BNSP logo" loading="lazy"></span>
             <div><span class="tag">BNSP Certified</span> <span class="tag">Apr 2026 · Valid 3 years</span></div>
           </div>
           <h3>Associate Data Scientist</h3>
@@ -827,7 +835,7 @@
           <a class="btn btn--sm" href="/Sertifikat LSP UDINUS.pdf" target="_blank" rel="noopener">View Certificate <svg class="icon" style="width:15px;height:15px;"><use href="#i-arrow"/></svg></a>
         </div>
         <div class="card cred__card">
-          <div class="cred__top"><span class="cred__icon" style="background:var(--teal);">🗂️</span>
+          <div class="cred__top"><span class="cred__icon cred__icon--logo"><img src="/google logo.png" alt="Google logo" loading="lazy"></span>
             <div><span class="tag">Course</span> <span class="tag">Jun 2026</span></div>
           </div>
           <h3>Foundations: Data, Data, Everywhere</h3>
@@ -835,7 +843,7 @@
           <a class="btn btn--sm" href="/CERTIFICATE COURSE 1 - Foundations Data, Data, Everywhere!.pdf" target="_blank" rel="noopener">View Certificate <svg class="icon" style="width:15px;height:15px;"><use href="#i-arrow"/></svg></a>
         </div>
         <div class="card cred__card">
-          <div class="cred__top"><span class="cred__icon" style="background:var(--coral);">🔎</span>
+          <div class="cred__top"><span class="cred__icon cred__icon--logo"><img src="/google logo.png" alt="Google logo" loading="lazy"></span>
             <div><span class="tag">Course</span> <span class="tag">Jul 2026</span></div>
           </div>
           <h3>Ask Questions to Make Data-Driven Decisions</h3>
@@ -851,7 +859,7 @@
           <a class="btn btn--sm" href="/Sertifikat Gemawira Udinus-Literasi AI.pdf" target="_blank" rel="noopener">View Certificate <svg class="icon" style="width:15px;height:15px;"><use href="#i-arrow"/></svg></a>
         </div>
         <div class="card cred__card">
-          <div class="cred__top"><span class="cred__icon" style="background:var(--coral);">✍️</span>
+          <div class="cred__top"><span class="cred__icon cred__icon--logo"><img src="/myskill logo small.png" alt="MySkill logo" loading="lazy"></span>
             <div><span class="tag">Short Class</span> <span class="tag">Oct 2024</span></div>
           </div>
           <h3>UX Writing</h3>
