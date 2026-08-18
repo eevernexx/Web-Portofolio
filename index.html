@@ -469,7 +469,7 @@
 <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
 <a class="skip-link" href="#main">Skip to content</a>
 
-<svg style="display:none" aria-hidden="true">
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
   <symbol id="i-instagram" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="17.3" cy="6.7" r="1.1" fill="currentColor"/></symbol>
   <symbol id="i-linkedin" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="8" cy="8.3" r="1.3" fill="currentColor"/><path d="M8 11v6.5M12 17.5V13c0-1.4 1-2.2 2.1-2.2 1.2 0 1.9.8 1.9 2.2v4.5" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></symbol>
   <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 6.5L4 12l5 5.5M15 6.5l5 5.5-5 5.5" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
@@ -485,6 +485,25 @@
   <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13" stroke="currentColor" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/><circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="17" cy="16" r="3" stroke="currentColor" stroke-width="2" fill="none"/></symbol>
   <symbol id="flag-id" viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice"><rect width="60" height="15" fill="#CE1126"/><rect y="15" width="60" height="15" fill="#FFFFFF"/></symbol>
   <symbol id="flag-gb" viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice"><rect width="60" height="30" fill="#00247D"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#FFFFFF" stroke-width="8"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#CF142B" stroke-width="3"/><path d="M30,0 V30 M0,15 H60" stroke="#FFFFFF" stroke-width="12"/><path d="M30,0 V30 M0,15 H60" stroke="#CF142B" stroke-width="7"/></symbol>
+  <symbol id="batik-jawa" viewBox="0 0 60 60" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <pattern id="kawungTile" width="30" height="30" patternUnits="userSpaceOnUse">
+        <rect width="30" height="30" fill="#6B4226"/>
+        <g fill="#EDDCB5">
+          <ellipse cx="15" cy="7.5" rx="5.5" ry="9"/>
+          <ellipse cx="15" cy="22.5" rx="5.5" ry="9"/>
+          <ellipse cx="7.5" cy="15" rx="9" ry="5.5"/>
+          <ellipse cx="22.5" cy="15" rx="9" ry="5.5"/>
+        </g>
+        <circle cx="15" cy="15" r="2.4" fill="#6B4226"/>
+        <circle cx="15" cy="7.5" r="1.3" fill="#6B4226"/>
+        <circle cx="15" cy="22.5" r="1.3" fill="#6B4226"/>
+        <circle cx="7.5" cy="15" r="1.3" fill="#6B4226"/>
+        <circle cx="22.5" cy="15" r="1.3" fill="#6B4226"/>
+      </pattern>
+    </defs>
+    <rect width="60" height="60" fill="url(#kawungTile)"/>
+  </symbol>
 </svg>
 
 <header class="nav" id="nav">
@@ -619,7 +638,7 @@
       <div class="lang__grid">
         <div class="card lang__card"><div class="lang__code"><svg class="flag-icon" aria-hidden="true"><use href="#flag-id"/></svg></div><h4>Bahasa Indonesia</h4><p class="level">Native</p></div>
         <div class="card lang__card"><div class="lang__code"><svg class="flag-icon" aria-hidden="true"><use href="#flag-gb"/></svg></div><h4>English</h4><p class="level">Professional Working</p></div>
-        <div class="card lang__card"><div class="lang__code">JV</div><h4>Javanese</h4><p class="level">Basic</p></div>
+        <div class="card lang__card"><div class="lang__code"><svg class="flag-icon" aria-hidden="true"><use href="#batik-jawa"/></svg></div><h4>Javanese</h4><p class="level">Basic</p></div>
       </div>
     </div>
   </section>
